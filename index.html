@@ -47,6 +47,7 @@
             color: var(--light);
         }
 
+        /* Floating Elements */
         .floating-elements {
             position: fixed;
             width: 100%;
@@ -77,6 +78,7 @@
             66% { transform: translateY(-15px) rotate(-3deg) scale(0.95); }
         }
 
+        /* Header Controls */
         .header-controls {
             position: fixed;
             top: 20px;
@@ -99,13 +101,35 @@
             border: none;
             background: var(--primary);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .control-btn:hover::before {
+            width: 100%;
+            height: 100%;
         }
 
         .control-btn:hover {
             transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
         }
 
+        /* Language Selector */
         .language-selector {
             position: fixed;
             top: 20px;
@@ -122,10 +146,17 @@
             font-weight: 600;
             color: var(--primary-dark);
             box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
+        }
+
+        .dark-mode .lang-btn {
+            background: rgba(13, 71, 161, 0.95);
+            color: var(--light);
+            border: 2px solid var(--secondary);
         }
 
         .lang-btn:hover {
@@ -145,6 +176,17 @@
             display: none;
             overflow: hidden;
             min-width: 120px;
+            animation: dropdownSlide 0.3s ease;
+        }
+
+        .dark-mode .lang-dropdown {
+            background: #1a237e;
+            color: var(--light);
+        }
+
+        @keyframes dropdownSlide {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .lang-dropdown.show {
@@ -159,12 +201,28 @@
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
+            color: var(--text);
+        }
+
+        .dark-mode .lang-option {
+            color: var(--light);
+            border-bottom: 1px solid #37474F;
         }
 
         .lang-option:hover {
             background: #f5f5f5;
+            transform: translateX(5px);
         }
 
+        .dark-mode .lang-option:hover {
+            background: #283593;
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        /* Trial Countdown Banner */
         .trial-banner {
             position: fixed;
             top: 0;
@@ -176,9 +234,42 @@
             text-align: center;
             z-index: 999;
             box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+            animation: slideDown 0.5s ease;
             display: none;
         }
 
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .trial-banner.expired {
+            background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
+        }
+
+        .trial-banner-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .trial-text {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .trial-timer {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Premium Crown Badge */
         .premium-badge {
             position: fixed;
             top: 85px;
@@ -194,6 +285,7 @@
             box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
             animation: rotate 4s linear infinite;
             display: none;
+            cursor: pointer;
         }
 
         @keyframes rotate {
@@ -201,6 +293,7 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Subscription Activation Box */
         .subscription-activation {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
             color: var(--white);
@@ -219,9 +312,11 @@
 
         .subscription-activation:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(66, 165, 245, 0.4);
         }
 
-        .phone-modal, .support-modal {
+        /* Phone Modal */
+        .phone-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -234,7 +329,7 @@
             justify-content: center;
         }
 
-        .phone-modal-content, .support-modal-content {
+        .phone-modal-content {
             background: var(--white);
             padding: 2rem;
             border-radius: var(--radius);
@@ -242,6 +337,29 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
+            animation: modalAppear 0.3s ease;
+        }
+
+        .dark-mode .phone-modal-content {
+            background: #1a237e;
+            color: var(--light);
+        }
+
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .phone-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0;
+            color: var(--primary-dark);
+            direction: ltr;
+        }
+
+        .dark-mode .phone-number {
+            color: #90CAF9;
         }
 
         .close-modal {
@@ -257,8 +375,10 @@
 
         .close-modal:hover {
             background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
+        /* Login Page */
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -279,6 +399,17 @@
             backdrop-filter: blur(15px);
             position: relative;
             z-index: 2;
+            animation: contentSlideUp 0.8s ease;
+        }
+
+        @keyframes contentSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dark-mode .login-content {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
         }
 
         .login-content h1 {
@@ -288,6 +419,24 @@
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 5px rgba(33, 150, 243, 0.5)); }
+            to { filter: drop-shadow(0 0 15px rgba(33, 150, 243, 0.8)); }
+        }
+
+        .login-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .dark-mode .login-subtitle {
+            color: #B0BEC5;
         }
 
         .auth-buttons {
@@ -304,6 +453,8 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
             border: none;
             display: flex;
             align-items: center;
@@ -313,8 +464,24 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: right 0.6s;
+        }
+
+        .auth-btn:hover::before {
+            right: 100%;
+        }
+
         .auth-btn:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
         .login-btn {
@@ -353,20 +520,17 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary-dark);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+            transform: scale(1.02);
         }
 
-        .signup-form {
-            display: none;
-            flex-direction: column;
-            gap: 1.2rem;
-            max-width: 350px;
-            margin: 0 auto 2rem;
+        .dark-mode .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 2px solid var(--secondary);
         }
 
-        .signup-form.active {
-            display: flex;
-        }
-
+        /* Menu Page */
         .menu-container {
             min-height: 100vh;
             padding: 2rem;
@@ -377,6 +541,7 @@
             text-align: center;
             margin-bottom: 3rem;
             padding-top: 5rem;
+            animation: contentSlideUp 0.8s ease;
         }
 
         .header h1 {
@@ -384,6 +549,13 @@
             color: var(--primary-dark);
             margin-bottom: 1rem;
             font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dark-mode .header h1 {
+            color: #90CAF9;
         }
 
         .page-subtitle {
@@ -392,6 +564,10 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+        }
+
+        .dark-mode .page-subtitle {
+            color: #B0BEC5;
         }
 
         .menu-grid {
@@ -411,17 +587,60 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: cardSlideUp 0.8s ease forwards;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
+        .menu-card:nth-child(1) { animation-delay: 0.2s; }
+        .menu-card:nth-child(2) { animation-delay: 0.4s; }
+
+        @keyframes cardSlideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .menu-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .dark-mode .menu-card {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
+        }
+
         .menu-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-15px) scale(1.05);
             box-shadow: var(--shadow-hover);
         }
 
         .menu-card-icon {
             font-size: 5rem;
             margin-bottom: 2rem;
+            filter: drop-shadow(0 6px 12px rgba(33, 150, 243, 0.3));
+            transition: var(--transition);
+        }
+
+        .menu-card:hover .menu-card-icon {
+            transform: scale(1.2) rotate(8deg);
         }
 
         .menu-card h2 {
@@ -429,6 +648,20 @@
             margin-bottom: 1.5rem;
             color: var(--primary-dark);
             font-weight: 600;
+        }
+
+        .dark-mode .menu-card h2 {
+            color: #90CAF9;
+        }
+
+        .menu-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode .menu-card p {
+            color: var(--light);
         }
 
         .back-btn {
@@ -444,13 +677,32 @@
             gap: 0.8rem;
             box-shadow: var(--shadow);
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
-        .back-btn:hover {
-            transform: translateX(-8px);
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
         }
 
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-8px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
+        }
+
+        /* Exams Page */
         .exams-container {
             min-height: 100vh;
             padding: 2rem;
@@ -474,14 +726,67 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: cardSlideUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
+        .exam-card:nth-child(odd) { animation-delay: 0.1s; }
+        .exam-card:nth-child(even) { animation-delay: 0.2s; }
+
+        .dark-mode .exam-card {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
+        }
+
         .exam-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-12px) scale(1.08);
             box-shadow: var(--shadow-hover);
         }
 
+        .exam-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .exam-card:hover::after {
+            opacity: 1;
+        }
+
+        .exam-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dark-mode .exam-card h3 {
+            color: #90CAF9;
+        }
+
+        .exam-card p {
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .dark-mode .exam-card p {
+            color: var(--light);
+        }
+
+        /* KURS Submenu */
         .kurs-submenu {
             display: none;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -503,14 +808,53 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: cardSlideUp 0.6s ease forwards;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
+        .kurs-card:nth-child(1) { animation-delay: 0.1s; }
+        .kurs-card:nth-child(2) { animation-delay: 0.2s; }
+        .kurs-card:nth-child(3) { animation-delay: 0.3s; }
+        .kurs-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .dark-mode .kurs-card {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
+        }
+
         .kurs-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-12px) scale(1.08);
             box-shadow: var(--shadow-hover);
         }
 
+        .kurs-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dark-mode .kurs-card h3 {
+            color: #90CAF9;
+        }
+
+        .kurs-card p {
+            color: var(--text-light);
+            position: relative;
+            z-index: 2;
+        }
+
+        .dark-mode .kurs-card p {
+            color: var(--light);
+        }
+
+        /* Back Button for KURS */
         .back-to-kurs {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
             color: var(--white);
@@ -524,13 +868,352 @@
             gap: 0.8rem;
             box-shadow: var(--shadow);
             font-weight: 600;
+            position: relative;
+            overflow: hidden;
             transition: var(--transition);
         }
 
-        .back-to-kurs:hover {
-            transform: translateX(-8px);
+        .back-to-kurs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
         }
 
+        .back-to-kurs:hover::before {
+            left: 100%;
+        }
+
+        .back-to-kurs:hover {
+            transform: translateX(-8px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(66, 165, 245, 0.4);
+        }
+
+        /* Support Modal */
+        .support-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .support-modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            animation: modalAppear 0.3s ease;
+        }
+
+        .dark-mode .support-modal-content {
+            background: #1a237e;
+            color: var(--light);
+        }
+
+        .support-info {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 15px;
+        }
+
+        .support-item {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Profile Page */
+        .profile-container {
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius);
+            padding: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            backdrop-filter: blur(15px);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: cardSlideUp 0.8s ease forwards;
+        }
+
+        .dark-mode .profile-card {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .profile-avatar-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+            font-weight: bold;
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
+            border: 4px solid var(--white);
+            animation: avatarPulse 3s ease-in-out infinite;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes avatarPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .image-upload-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .image-upload-label {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            transition: var(--transition);
+        }
+
+        .image-upload-label:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
+        }
+
+        .image-upload-input {
+            display: none;
+        }
+
+        .profile-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-section {
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(33, 150, 243, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .info-section h3 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .dark-mode .info-section h3 {
+            color: #90CAF9;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(33, 150, 243, 0.1);
+            font-size: 1rem;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .countdown-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .countdown-section h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown-timer {
+            font-family: 'Courier New', monospace;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-action-btn {
+            padding: 1rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .edit-profile-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+        }
+
+        .change-password-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            color: var(--white);
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
+            color: var(--white);
+        }
+
+        /* Edit Profile Modal */
+        .edit-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit-modal-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            animation: modalAppear 0.3s ease;
+        }
+
+        .dark-mode .edit-modal-content {
+            background: #1a237e;
+            color: var(--light);
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-select {
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            border: 2px solid var(--primary);
+            background: rgba(255, 255, 255, 0.9);
+            transition: var(--transition);
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
+        }
+
+        .dark-mode .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border: 2px solid var(--secondary);
+        }
+
+        /* Waiting Approval Page */
         .waiting-container {
             min-height: 100vh;
             display: flex;
@@ -551,6 +1234,12 @@
             backdrop-filter: blur(15px);
             position: relative;
             z-index: 2;
+            animation: contentSlideUp 0.8s ease;
+        }
+
+        .dark-mode .waiting-content {
+            background: rgba(13, 71, 161, 0.95);
+            border: 1px solid rgba(227, 242, 253, 0.2);
         }
 
         .waiting-icon {
@@ -563,6 +1252,27 @@
             50% { transform: scale(1.1); }
         }
 
+        .waiting-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .waiting-content p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .dark-mode .waiting-content p {
+            color: #B0BEC5;
+        }
+
+        /* Toast Notifications */
         .toast-container {
             position: fixed;
             top: 20px;
@@ -582,7 +1292,13 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            animation: toastSlideIn 0.3s ease;
             max-width: 350px;
+        }
+
+        @keyframes toastSlideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .toast-success {
@@ -593,28 +1309,88 @@
             background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
         }
 
+        .toast-warning {
+            background: linear-gradient(135deg, var(--warning) 0%, #FF8F00 100%);
+        }
+
         .toast-info {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         }
 
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-content, .waiting-content, .profile-card, .edit-modal-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .menu-grid, .exams-grid, .kurs-submenu {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-card, .exam-card, .kurs-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .profile-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile-action-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+
+            .header-controls {
+                top: 10px;
+                right: 10px;
+            }
+
+            .language-selector {
+                top: 10px;
+                left: 10px;
+            }
+
+            .control-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .trial-banner-content {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .trial-text {
+                font-size: 0.9rem;
+            }
+
+            .trial-timer {
+                font-size: 1rem;
+            }
+        }
+
+        /* Page Management */
         .page {
             display: none;
         }
 
         .page.active {
             display: block;
-        }
-
-        @media (max-width: 768px) {
-            .login-content, .waiting-content {
-                padding: 2rem 1.5rem;
-            }
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            .menu-grid, .exams-grid, .kurs-submenu {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -634,7 +1410,7 @@
     <!-- Trial Countdown Banner -->
     <div class="trial-banner" id="trialBanner">
         <div class="trial-banner-content">
-            <div class="trial-text">النسخة التجريبية - متبقي:</div>
+            <div class="trial-text" id="trialBannerText">النسخة التجريبية - متبقي:</div>
             <div class="trial-timer" id="trialTimer">24:00:00</div>
         </div>
     </div>
@@ -675,8 +1451,8 @@
     <!-- Phone Modal -->
     <div class="phone-modal" id="phoneModal">
         <div class="phone-modal-content">
-            <h2>تفعيل الاشتراك</h2>
-            <p>لتفعيل الاشتراك يرجى التواصل على الرقم التالي:</p>
+            <h2 id="phoneModalTitle">تفعيل الاشتراك</h2>
+            <p id="phoneModalText">لتفعيل الاشتراك يرجى التواصل على الرقم التالي:</p>
             <div class="phone-number">+212 649-661976</div>
             <button class="close-modal" id="closePhoneModal">إغلاق</button>
         </div>
@@ -685,8 +1461,8 @@
     <!-- Support Modal -->
     <div class="support-modal" id="supportModal">
         <div class="support-modal-content">
-            <h2>اتصال الدعم</h2>
-            <p>للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:</p>
+            <h2 id="supportTitle">اتصال الدعم</h2>
+            <p id="supportText">للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:</p>
             <div class="support-info">
                 <div class="support-item">
                     <i class="fas fa-phone"></i>
@@ -701,41 +1477,88 @@
         </div>
     </div>
 
+    <!-- Edit Profile Modal -->
+    <div class="edit-modal" id="editModal">
+        <div class="edit-modal-content">
+            <h2 id="editProfileTitle">تعديل الملف الشخصي</h2>
+            <div class="edit-form">
+                <div class="form-group">
+                    <label for="editName">الاسم:</label>
+                    <input type="text" id="editName" class="form-input" placeholder="أدخل اسمك">
+                </div>
+                <div class="form-group">
+                    <label for="editEmail">البريد الإلكتروني:</label>
+                    <input type="email" id="editEmail" class="form-input" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <div class="form-group">
+                    <label for="editPhone">الهاتف:</label>
+                    <input type="tel" id="editPhone" class="form-input" placeholder="أدخل رقم هاتفك">
+                </div>
+                <div class="form-group">
+                    <label for="editLocation">المكان:</label>
+                    <input type="text" id="editLocation" class="form-input" placeholder="أدخل مكان إقامتك">
+                </div>
+                <div class="form-group">
+                    <label for="editExamDate">تاريخ الامتحان:</label>
+                    <input type="date" id="editExamDate" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="editExamLocation">مكان الامتحان:</label>
+                    <select id="editExamLocation" class="form-select">
+                        <option value="">اختر مدينة الامتحان</option>
+                        <option value="فاس">فاس — Fès</option>
+                        <option value="القنيطرة">القنيطرة — Kénitra</option>
+                        <option value="الرباط">الرباط — Rabat</option>
+                        <option value="مراكش">مراكش — Marrakech</option>
+                        <option value="الدار البيضاء">الدار البيضاء — Casablanca</option>
+                        <option value="طنجة">طنجة — Tanger</option>
+                        <option value="بني ملال">بني ملال — Béni Mellal</option>
+                        <option value="الناظور">الناظور — Nador</option>
+                        <option value="أكادير">أكادير — Agadir</option>
+                    </select>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="profile-action-btn edit-profile-btn" id="saveProfile">
+                    <i class="fas fa-save"></i>
+                    <span>حفظ التغييرات</span>
+                </button>
+                <button class="profile-action-btn change-password-btn" id="changePassword">
+                    <i class="fas fa-key"></i>
+                    <span>تغيير كلمة المرور</span>
+                </button>
+                <button class="profile-action-btn logout-btn" id="cancelEdit">
+                    <i class="fas fa-times"></i>
+                    <span>إلغاء</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Login Page -->
     <div id="loginPage" class="page active">
         <div class="login-container">
             <div class="login-content">
-                <h1>TELC B2 Training - نظام المصادقة</h1>
-                <p class="login-subtitle">سجّل دخولك للبدء في التدريب أو جرّب كضيف</p>
+                <h1 id="loginTitle">TELC B2 Training - نظام المصادقة</h1>
+                <p class="login-subtitle" id="loginSubtitle">سجّل دخولك للبدء في التدريب أو جرّب كضيف</p>
                 
-                <div class="login-form" id="loginForm">
+                <div class="login-form">
                     <input type="email" class="form-input" id="emailInput" placeholder="البريد الإلكتروني">
                     <input type="password" class="form-input" id="passwordInput" placeholder="كلمة المرور">
                     <button class="auth-btn login-btn" id="loginButton">
                         <i class="fas fa-sign-in-alt"></i>
-                        <span>تسجيل الدخول</span>
-                    </button>
-                </div>
-
-                <div class="signup-form" id="signupForm">
-                    <input type="text" class="form-input" id="fullNameInput" placeholder="الاسم الكامل">
-                    <input type="email" class="form-input" id="signupEmailInput" placeholder="البريد الإلكتروني">
-                    <input type="password" class="form-input" id="signupPasswordInput" placeholder="كلمة المرور">
-                    <input type="password" class="form-input" id="confirmPasswordInput" placeholder="تأكيد كلمة المرور">
-                    <button class="auth-btn signup-btn" id="confirmSignupButton">
-                        <i class="fas fa-user-plus"></i>
-                        <span>إنشاء الحساب</span>
+                        <span id="loginBtnText">تسجيل الدخول</span>
                     </button>
                 </div>
 
                 <div class="auth-buttons">
                     <button class="auth-btn signup-btn" id="signupButton">
                         <i class="fas fa-user-plus"></i>
-                        <span>إنشاء حساب جديد</span>
+                        <span id="signupBtnText">إنشاء حساب جديد</span>
                     </button>
                     <button class="auth-btn guest-btn" id="guestButton">
                         <i class="fas fa-user"></i>
-                        <span>الدخول كضيف</span>
+                        <span id="guestBtnText">الدخول كضيف</span>
                     </button>
                 </div>
 
@@ -751,25 +1574,25 @@
     <div id="menuPage" class="page">
         <div class="menu-container">
             <div class="header">
-                <h1>TELC B2 Training Portal</h1>
-                <p class="page-subtitle">اختر مجال تعلمك وابدأ التحضير للاختبار</p>
+                <h1 id="menuTitle">TELC B2 Training Portal</h1>
+                <p class="page-subtitle" id="menuSubtitle">اختر مجال تعلمك وابدأ التحضير للاختبار</p>
                 <button class="back-btn" id="backToLogin">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>تسجيل الخروج</span>
+                    <span id="backToLoginText">تسجيل الخروج</span>
                 </button>
             </div>
             
             <div class="menu-grid">
                 <div class="menu-card" id="kursCard">
                     <div class="menu-card-icon">📘</div>
-                    <h2>KURS</h2>
-                    <p>الدروس التفاعلية والتدريبات المصنفة حسب المستوى</p>
+                    <h2 id="kursTitle">KURS</h2>
+                    <p id="kursDescription">الدروس التفاعلية والتدريبات المصنفة حسب المستوى</p>
                 </div>
                 
                 <div class="menu-card" id="examsCard">
                     <div class="menu-card-icon">📚</div>
-                    <h2>Prüfungen</h2>
-                    <p>اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة</p>
+                    <h2 id="examsTitle">Prüfungen</h2>
+                    <p id="examsDescription">اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة</p>
                 </div>
             </div>
         </div>
@@ -780,36 +1603,231 @@
         <div class="exams-container">
             <button class="back-btn" id="backFromKurs">
                 <i class="fas fa-arrow-right"></i>
-                <span>العودة إلى القائمة الرئيسية</span>
+                <span id="backKursText">العودة إلى القائمة الرئيسية</span>
             </button>
             <div class="header">
-                <h1>KURS - الدروس</h1>
-                <p class="page-subtitle">اختر نوع التدريب الذي ترغب في البدء به</p>
+                <h1 id="kursPageTitle">KURS - الدروس</h1>
+                <p class="page-subtitle" id="kursPageSubtitle">اختر نوع التدريب الذي ترغب في البدء به</p>
             </div>
             
             <div class="kurs-submenu active">
                 <div class="kurs-card" id="lesenCard">
                     <div class="menu-card-icon">📖</div>
-                    <h3>Lesen</h3>
-                    <p>تدريبات القراءة والفهم النصي</p>
+                    <h3 id="lesenTitle">Lesen</h3>
+                    <p id="lesenDescription">تدريبات القراءة والفهم النصي</p>
                 </div>
                 
                 <div class="kurs-card" id="hoerenCard">
                     <div class="menu-card-icon">👂</div>
-                    <h3>Hören</h3>
-                    <p>تدريبات الاستماع والفهم السمعي</p>
+                    <h3 id="hoerenTitle">Hören</h3>
+                    <p id="hoerenDescription">تدريبات الاستماع والفهم السمعي</p>
                 </div>
                 
                 <div class="kurs-card" id="schreibenCard">
                     <div class="menu-card-icon">✍️</div>
-                    <h3>Schreiben</h3>
-                    <p>تدريبات الكتابة والتعبير الكتابي</p>
+                    <h3 id="schreibenTitle">Schreiben</h3>
+                    <p id="schreibenDescription">تدريبات الكتابة والتعبير الكتابي</p>
                 </div>
                 
                 <div class="kurs-card" id="pdfsCard">
                     <div class="menu-card-icon">📄</div>
-                    <h3>PDFs</h3>
-                    <p>المواد الدراسية بصيغة PDF للتحميل</p>
+                    <h3 id="pdfsTitle">PDFs</h3>
+                    <p id="pdfsDescription">المواد الدراسية بصيغة PDF للتحميل</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lesen Exams Page -->
+    <div id="lesenPage" class="page">
+        <div class="exams-container">
+            <button class="back-to-kurs" id="backFromLesen">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backLesenText">العودة إلى KURS</span>
+            </button>
+            <div class="header">
+                <h1 id="lesenPageTitle">Lesen - القراءة</h1>
+                <p class="page-subtitle" id="lesenPageSubtitle">اختر تمرين القراءة الذي ترغب في البدء به</p>
+            </div>
+            
+            <div class="exams-grid" id="lesenGrid">
+                <!-- Lesen exams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hören Exams Page -->
+    <div id="hoerenPage" class="page">
+        <div class="exams-container">
+            <button class="back-to-kurs" id="backFromHoeren">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backHoerenText">العودة إلى KURS</span>
+            </button>
+            <div class="header">
+                <h1 id="hoerenPageTitle">Hören - الاستماع</h1>
+                <p class="page-subtitle" id="hoerenPageSubtitle">اختر تمرين الاستماع الذي ترغب في البدء به</p>
+            </div>
+            
+            <div class="exams-grid" id="hoerenGrid">
+                <!-- Hören exams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Schreiben Exams Page -->
+    <div id="schreibenPage" class="page">
+        <div class="exams-container">
+            <button class="back-to-kurs" id="backFromSchreiben">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backSchreibenText">العودة إلى KURS</span>
+            </button>
+            <div class="header">
+                <h1 id="schreibenPageTitle">Schreiben - الكتابة</h1>
+                <p class="page-subtitle" id="schreibenPageSubtitle">اختر تمرين الكتابة الذي ترغب في البدء به</p>
+            </div>
+            
+            <div class="exams-grid" id="schreibenGrid">
+                <!-- Schreiben exams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PDFs Page -->
+    <div id="pdfsPage" class="page">
+        <div class="exams-container">
+            <button class="back-to-kurs" id="backFromPdfs">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backPdfsText">العودة إلى KURS</span>
+            </button>
+            <div class="header">
+                <h1 id="pdfsPageTitle">PDFs - المواد الدراسية</h1>
+                <p class="page-subtitle" id="pdfsPageSubtitle">اختر المادة التي ترغب في تحميلها</p>
+            </div>
+            
+            <div class="exams-grid" id="pdfsGrid">
+                <!-- PDFs will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Exams Page -->
+    <div id="examsPage" class="page">
+        <div class="exams-container">
+            <button class="back-btn" id="backFromExams">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backExamsText">العودة إلى القائمة الرئيسية</span>
+            </button>
+            <div class="header">
+                <h1 id="examsPageTitle">Prüfungen - الامتحانات</h1>
+                <p class="page-subtitle" id="examsPageSubtitle">اختر الامتحان الذي ترغب في التدرب عليه</p>
+            </div>
+            
+            <div class="exams-grid" id="examsGrid">
+                <!-- Exams will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page">
+        <div class="profile-container">
+            <button class="back-btn" id="backFromProfile">
+                <i class="fas fa-arrow-right"></i>
+                <span id="backProfileText">العودة إلى القائمة الرئيسية</span>
+            </button>
+            <div class="header">
+                <h1 id="profileTitle">ملفي الشخصي</h1>
+                <p class="page-subtitle" id="profileSubtitle">إدارة بياناتك الشخصية وتتبع تقدمك التعليمي</p>
+            </div>
+            
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar-container">
+                        <div class="profile-avatar" id="userAvatar">ز</div>
+                    </div>
+                    <h2 id="userName">زكرياء</h2>
+                    <p id="userLevel">طالب مستوى B2</p>
+                </div>
+
+                <div class="image-upload-container">
+                    <label for="imageUpload" class="image-upload-label">
+                        <i class="fas fa-camera"></i> اختيار صورة
+                    </label>
+                    <input type="file" id="imageUpload" class="image-upload-input" accept="image/*">
+                </div>
+                
+                <div class="profile-info-grid">
+                    <div class="info-section">
+                        <h3 id="personalInfoTitle">المعلومات الشخصية</h3>
+                        <div class="info-item">
+                            <span id="nameLabel">الاسم:</span>
+                            <span id="profileName">زكرياء</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="emailLabel">البريد الإلكتروني:</span>
+                            <span id="profileEmail">zakariaap.6@gmail.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="phoneLabel">الهاتف:</span>
+                            <span id="profilePhone">+212 649-661976</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="locationLabel">المكان:</span>
+                            <span id="profileLocation">المغرب</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3 id="examInfoTitle">معلومات الامتحان</h3>
+                        <div class="info-item">
+                            <span id="examDateLabel">تاريخ الامتحان:</span>
+                            <span id="profileExamDate">01/12/2025</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="examLocationLabel">مكان الامتحان:</span>
+                            <span id="profileExamLocation">برلين</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="levelLabel">المستوى:</span>
+                            <span id="profileLevel">B2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h3 id="statsTitle">الإحصائيات</h3>
+                        <div class="info-item">
+                            <span id="pointsLabel">النقاط:</span>
+                            <span id="profilePoints">150</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="completedLabel">الامتحانات المكتملة:</span>
+                            <span id="profileCompleted">8/20</span>
+                        </div>
+                        <div class="info-item">
+                            <span id="progressLabel">مستوى التقدم:</span>
+                            <span id="profileProgress">65%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="countdown-section">
+                    <h3 id="examCountdownTitle">الوقت المتبقي حتى الامتحان:</h3>
+                    <div class="countdown-timer" id="examCountdown">30 يوم 00:00:00</div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="profile-action-btn edit-profile-btn" id="editProfileBtn">
+                        <i class="fas fa-edit"></i>
+                        <span id="editProfileText">تعديل الملف الشخصي</span>
+                    </button>
+                    <button class="profile-action-btn change-password-btn" id="changePasswordBtn">
+                        <i class="fas fa-key"></i>
+                        <span id="changePasswordText">تغيير كلمة المرور</span>
+                    </button>
+                    <button class="profile-action-btn logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span id="logoutText">تسجيل الخروج</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -819,15 +1837,15 @@
     <div id="waitingPage" class="page">
         <div class="waiting-container">
             <div class="waiting-content">
-                <h1>بانتظار الموافقة</h1>
-                <p>تم استلام طلب تسجيلك بنجاح! جاري مراجعته من قبل المسؤول</p>
+                <h1 id="waitingTitle">بانتظار الموافقة</h1>
+                <p id="waitingText">تم استلام طلب تسجيلك بنجاح! جاري مراجعته من قبل المسؤول</p>
                 <div class="waiting-icon">
                     <i class="fas fa-clock fa-4x"></i>
                 </div>
-                <p>سيتم إعلامك عبر البريد الإلكتروني عند الموافقة على طلبك</p>
+                <p id="waitingSubtext">سيتم إعلامك عبر البريد الإلكتروني عند الموافقة على طلبك</p>
                 <button class="auth-btn login-btn" id="signOutWaiting">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>تسجيل الخروج</span>
+                    <span id="signOutWaitingText">تسجيل الخروج</span>
                 </button>
             </div>
         </div>
@@ -837,12 +1855,253 @@
     <div class="toast-container" id="toastContainer"></div>
 
     <script type="module">
-        // تكوين Supabase الجديد
-        const SUPABASE_URL = 'https://gxliuuhgssesdrbwgdui.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bGl1dWhnc3Nlc2RyYndnZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NTQyNTIsImV4cCI6MjA3NjAzMDI1Mn0.gPVliO_yB__XqGBdWHCpr1FdbOtKuQ-1XDA-JoclZNU';
+        // تكوين Supabase - استخدم المفاتيح الجديدة
+        const SUPABASE_URL = 'https://xdladxoibrkmjtmtccix.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhkbGFkeG9pYnJrbWp0bXRjY2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3MDY5MjAsImV4cCI6MjA3NjI4MjkyMH0.1zW6cLE1IP_F6wdi3m9EPvm0KKEVOeh7F2Sa05lFk5I';
         
         // تهيئة Supabase
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // قوائم الامتحانات والدروس
+        const themaKompliExams = [
+            "ALBI2A.html", "ALPEN.html", "BATATA.html", "BILDER.html", "BINZIL.html",
+            "GRUND SCHULE.html", "HACHARAT.html", "KELLNER.html", "L9AHWA.html", "LHALWA.html",
+            "LI9A7.html", "LICHT.html", "LIMON.html", "MOBARMIJIN.html", "NA7L.html",
+            "NAMSA.html", "SCHLAFZUG.html", "SPORT IST GESUND.html", "TANZKURZ.html", "TRANPOLIN.html"
+        ];
+
+        const lesenExams = [
+            "AL3AB.html", "ALBI2A.html", "ALPEN.html", "BATATA.html", "BENZIL.html",
+            "BILDER.html", "GELD.html", "GRUNDSCHULE.html", "HACHARAT.html", "HATIF L2ATFAL.html",
+            "INSEL.html", "INTIKHABAT.html", "KELLNER.html", "L7ALWA.html", "L9AHWA.html",
+            "LI9A7.html", "LICHT.html", "LIMON.html", "MOBARMIJIN.html", "MOKHADIRAT.html",
+            "NA7L.html", "NAMSA.html", "SCHLAFZUG.html", "SPORT IST GESUND.html", "TANZKURS.html", "TRAMPOLIN.html"
+        ];
+
+        const hoerenExams = ["HÖREN.html", "HÖREN (1).html"];
+        const schreibenExams = ["SCHREIBEN.html"];
+        const pdfs = [
+            "ALBI2A.pdf", "AL3AB.pdf", "ALPEN.pdf", "BATATA.pdf", "BENZIL.pdf",
+            "BILDER.pdf", "GELD.pdf", "GRUNDSCHULE.pdf", "HACHARAT.pdf", "HATIF L2ATFAL.pdf",
+            "INSEL.pdf", "INTIKHABAT.pdf", "KELLNER.pdf", "L7ALWA.pdf", "L9AHWA.pdf",
+            "LI9A7.pdf", "LICHT.pdf", "LIMON.pdf", "MOBARMIJIN.pdf", "MOKHADIRAT.pdf",
+            "NA7L.pdf", "NAMSA.pdf", "SCHLAFZUG.pdf", "SPORT IST GESUND.pdf", "TANZKURZ.pdf",
+            "TRAMPOLINE.pdf", "hören.pdf", "hören (1).pdf", "Schreiben.pdf"
+        ];
+
+        // الترجمات
+        const translations = {
+            ar: {
+                loginTitle: "TELC B2 Training - نظام المصادقة",
+                loginSubtitle: "سجّل دخولك للبدء في التدريب أو جرّب كضيف",
+                loginBtnText: "تسجيل الدخول",
+                signupBtnText: "إنشاء حساب جديد",
+                guestBtnText: "الدخول كضيف",
+                menuTitle: "TELC B2 Training Portal",
+                menuSubtitle: "اختر مجال تعلمك وابدأ التحضير للاختبار",
+                kursTitle: "KURS",
+                kursDescription: "الدروس التفاعلية والتدريبات المصنفة حسب المستوى",
+                examsTitle: "Prüfungen",
+                examsDescription: "اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة",
+                backToLoginText: "تسجيل الخروج",
+                backKursText: "العودة إلى القائمة الرئيسية",
+                kursPageTitle: "KURS - الدروس",
+                kursPageSubtitle: "اختر نوع التدريب الذي ترغب في البدء به",
+                lesenTitle: "Lesen",
+                lesenDescription: "تدريبات القراءة والفهم النصي",
+                hoerenTitle: "Hören",
+                hoerenDescription: "تدريبات الاستماع والفهم السمعي",
+                schreibenTitle: "Schreiben",
+                schreibenDescription: "تدريبات الكتابة والتعبير الكتابي",
+                pdfsTitle: "PDFs",
+                pdfsDescription: "المواد الدراسية بصيغة PDF للتحميل",
+                backLesenText: "العودة إلى KURS",
+                lesenPageTitle: "Lesen - القراءة",
+                lesenPageSubtitle: "اختر تمرين القراءة الذي ترغب في البدء به",
+                backHoerenText: "العودة إلى KURS",
+                hoerenPageTitle: "Hören - الاستماع",
+                hoerenPageSubtitle: "اختر تمرين الاستماع الذي ترغب في البدء به",
+                backSchreibenText: "العودة إلى KURS",
+                schreibenPageTitle: "Schreiben - الكتابة",
+                schreibenPageSubtitle: "اختر تمرين الكتابة الذي ترغب في البدء به",
+                backPdfsText: "العودة إلى KURS",
+                pdfsPageTitle: "PDFs - المواد الدراسية",
+                pdfsPageSubtitle: "اختر المادة التي ترغب في تحميلها",
+                backExamsText: "العودة إلى القائمة الرئيسية",
+                examsPageTitle: "Prüfungen - الامتحانات",
+                examsPageSubtitle: "اختر الامتحان الذي ترغب في التدرب عليه",
+                backProfileText: "العودة إلى القائمة الرئيسية",
+                profileTitle: "ملفي الشخصي",
+                profileSubtitle: "إدارة بياناتك الشخصية وتتبع تقدمك التعليمي",
+                personalInfoTitle: "المعلومات الشخصية",
+                nameLabel: "الاسم:",
+                emailLabel: "البريد الإلكتروني:",
+                phoneLabel: "الهاتف:",
+                locationLabel: "المكان:",
+                examInfoTitle: "معلومات الامتحان",
+                examDateLabel: "تاريخ الامتحان:",
+                examLocationLabel: "مكان الامتحان:",
+                levelLabel: "المستوى:",
+                statsTitle: "الإحصائيات",
+                pointsLabel: "النقاط:",
+                completedLabel: "الامتحانات المكتملة:",
+                progressLabel: "مستوى التقدم:",
+                examCountdownTitle: "الوقت المتبقي حتى الامتحان:",
+                editProfileText: "تعديل الملف الشخصي",
+                changePasswordText: "تغيير كلمة المرور",
+                logoutText: "تسجيل الخروج",
+                supportTitle: "اتصال الدعم",
+                supportText: "للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:",
+                phoneModalTitle: "تفعيل الاشتراك",
+                phoneModalText: "لتفعيل الاشتراك يرجى التواصل على الرقم التالي:",
+                trialBannerText: "النسخة التجريبية - متبقي:",
+                waitingTitle: "بانتظار الموافقة",
+                waitingText: "تم استلام طلب تسجيلك بنجاح! جاري مراجعته من قبل المسؤول",
+                waitingSubtext: "سيتم إعلامك عبر البريد الإلكتروني عند الموافقة على طلبك",
+                signOutWaitingText: "تسجيل الخروج",
+                editProfileTitle: "تعديل الملف الشخصي"
+            },
+            en: {
+                loginTitle: "TELC B2 Training - Authentication System",
+                loginSubtitle: "Log in to start training or try as a guest",
+                loginBtnText: "Login",
+                signupBtnText: "Create New Account",
+                guestBtnText: "Login as Guest",
+                menuTitle: "TELC B2 Training Portal",
+                menuSubtitle: "Choose your learning area and start preparing for the exam",
+                kursTitle: "KURS",
+                kursDescription: "Interactive lessons and classified exercises by level",
+                examsTitle: "Prüfungen",
+                examsDescription: "Test your knowledge with our comprehensive exam preparations and simulations",
+                backToLoginText: "Logout",
+                backKursText: "Back to Main Menu",
+                kursPageTitle: "KURS - Lessons",
+                kursPageSubtitle: "Choose the type of training you want to start with",
+                lesenTitle: "Lesen",
+                lesenDescription: "Reading and text comprehension exercises",
+                hoerenTitle: "Hören",
+                hoerenDescription: "Listening and auditory comprehension exercises",
+                schreibenTitle: "Schreiben",
+                schreibenDescription: "Writing and written expression exercises",
+                pdfsTitle: "PDFs",
+                pdfsDescription: "Study materials in PDF format for download",
+                backLesenText: "Back to KURS",
+                lesenPageTitle: "Lesen - Reading",
+                lesenPageSubtitle: "Choose the reading exercise you want to start with",
+                backHoerenText: "Back to KURS",
+                hoerenPageTitle: "Hören - Listening",
+                hoerenPageSubtitle: "Choose the listening exercise you want to start with",
+                backSchreibenText: "Back to KURS",
+                schreibenPageTitle: "Schreiben - Writing",
+                schreibenPageSubtitle: "Choose the writing exercise you want to start with",
+                backPdfsText: "Back to KURS",
+                pdfsPageTitle: "PDFs - Study Materials",
+                pdfsPageSubtitle: "Choose the material you want to download",
+                backExamsText: "Back to Main Menu",
+                examsPageTitle: "Prüfungen - Exams",
+                examsPageSubtitle: "Choose the exam you want to practice",
+                backProfileText: "Back to Main Menu",
+                profileTitle: "My Profile",
+                profileSubtitle: "Manage your personal data and track your educational progress",
+                personalInfoTitle: "Personal Information",
+                nameLabel: "Name:",
+                emailLabel: "Email:",
+                phoneLabel: "Phone:",
+                locationLabel: "Location:",
+                examInfoTitle: "Exam Information",
+                examDateLabel: "Exam Date:",
+                examLocationLabel: "Exam Location:",
+                levelLabel: "Level:",
+                statsTitle: "Statistics",
+                pointsLabel: "Points:",
+                completedLabel: "Completed Exams:",
+                progressLabel: "Progress Level:",
+                examCountdownTitle: "Time remaining until exam:",
+                editProfileText: "Edit Profile",
+                changePasswordText: "Change Password",
+                logoutText: "Logout",
+                supportTitle: "Support Contact",
+                supportText: "For questions, problems, or to purchase the full version, please contact:",
+                phoneModalTitle: "Subscription Activation",
+                phoneModalText: "To activate subscription, please contact the following number:",
+                trialBannerText: "Trial Version - Remaining:",
+                waitingTitle: "Waiting for Approval",
+                waitingText: "Your registration request has been received successfully! Being reviewed by admin",
+                waitingSubtext: "You will be notified via email when your request is approved",
+                signOutWaitingText: "Sign Out",
+                editProfileTitle: "Edit Profile"
+            },
+            de: {
+                loginTitle: "TELC B2 Training - Authentifizierungssystem",
+                loginSubtitle: "Melden Sie sich an, um mit dem Training zu beginnen, oder probieren Sie es als Gast",
+                loginBtnText: "Anmelden",
+                signupBtnText: "Neues Konto erstellen",
+                guestBtnText: "Als Gast anmelden",
+                menuTitle: "TELC B2 Training Portal",
+                menuSubtitle: "Wählen Sie Ihren Lernbereich und beginnen Sie mit der Prüfungsvorbereitung",
+                kursTitle: "KURS",
+                kursDescription: "Interaktive Lektionen und nach Level klassifizierte Übungen",
+                examsTitle: "Prüfungen",
+                examsDescription: "Testen Sie Ihr Wissen mit unseren umfassenden Prüfungsvorbereitungen und Simulationen",
+                backToLoginText: "Abmelden",
+                backKursText: "Zurück zum Hauptmenü",
+                kursPageTitle: "KURS - Lektionen",
+                kursPageSubtitle: "Wählen Sie die Art des Trainings, mit dem Sie beginnen möchten",
+                lesenTitle: "Lesen",
+                lesenDescription: "Lese- und Textverständnisübungen",
+                hoerenTitle: "Hören",
+                hoerenDescription: "Hör- und Hörverständnisübungen",
+                schreibenTitle: "Schreiben",
+                schreibenDescription: "Schreib- und schriftliche Ausdrucksübungen",
+                pdfsTitle: "PDFs",
+                pdfsDescription: "Lernmaterialien im PDF-Format zum Download",
+                backLesenText: "Zurück zu KURS",
+                lesenPageTitle: "Lesen - Reading",
+                lesenPageSubtitle: "Wählen Sie die Leseübung, mit der Sie beginnen möchten",
+                backHoerenText: "Zurück zu KURS",
+                hoerenPageTitle: "Hören - Listening",
+                hoerenPageSubtitle: "Wählen Sie die Hörübung, mit der Sie beginnen möchten",
+                backSchreibenText: "Zurück zu KURS",
+                schreibenPageTitle: "Schreiben - Writing",
+                schreibenPageSubtitle: "Wählen Sie die Schreibübung, mit der Sie beginnen möchten",
+                backPdfsText: "Zurück zu KURS",
+                pdfsPageTitle: "PDFs - Lernmaterialien",
+                pdfsPageSubtitle: "Wählen Sie das Material aus, das Sie herunterladen möchten",
+                backExamsText: "Zurück zum Hauptmenü",
+                examsPageTitle: "Prüfungen - Exams",
+                examsPageSubtitle: "Wählen Sie die Prüfung, die Sie üben möchten",
+                backProfileText: "Zurück zum Hauptmenü",
+                profileTitle: "Mein Profil",
+                profileSubtitle: "Verwalten Sie Ihre persönlichen Daten und verfolgen Sie Ihren Bildungsfortschritt",
+                personalInfoTitle: "Persönliche Informationen",
+                nameLabel: "Name:",
+                emailLabel: "E-Mail:",
+                phoneLabel: "Telefon:",
+                locationLabel: "Ort:",
+                examInfoTitle: "Prüfungsinformationen",
+                examDateLabel: "Prüfungsdatum:",
+                examLocationLabel: "Prüfungsort:",
+                levelLabel: "Niveau:",
+                statsTitle: "Statistiken",
+                pointsLabel: "Punkte:",
+                completedLabel: "Abgeschlossene Prüfungen:",
+                progressLabel: "Fortschrittsniveau:",
+                examCountdownTitle: "Verbleibende Zeit bis zur Prüfung:",
+                editProfileText: "Profil bearbeiten",
+                changePasswordText: "Passwort ändern",
+                logoutText: "Abmelden",
+                supportTitle: "Support-Kontakt",
+                supportText: "Bei Fragen, Problemen oder zum Kauf der Vollversion wenden Sie sich bitte an:",
+                phoneModalTitle: "Abo-Aktivierung",
+                phoneModalText: "Um das Abonnement zu aktivieren, wenden Sie sich bitte an die folgende Nummer:",
+                trialBannerText: "Testversion - Verbleibend:",
+                waitingTitle: "Warten auf Genehmigung",
+                waitingText: "Ihre Registrierungsanfrage wurde erfolgreich empfangen! Wird vom Administrator überprüft",
+                waitingSubtext: "Sie werden per E-Mail benachrichtigt, wenn Ihre Anfrage genehmigt wird",
+                signOutWaitingText: "Abmelden",
+                editProfileTitle: "Profil bearbeiten"
+            }
+        };
 
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
@@ -851,8 +2110,32 @@
                 login: document.getElementById('loginPage'),
                 menu: document.getElementById('menuPage'),
                 kurs: document.getElementById('kursPage'),
+                lesen: document.getElementById('lesenPage'),
+                hoeren: document.getElementById('hoerenPage'),
+                schreiben: document.getElementById('schreibenPage'),
+                pdfs: document.getElementById('pdfsPage'),
+                exams: document.getElementById('examsPage'),
+                profile: document.getElementById('profilePage'),
                 waiting: document.getElementById('waitingPage')
             };
+
+            // أزرار التنقل
+            const backToLogin = document.getElementById('backToLogin');
+            const backFromKurs = document.getElementById('backFromKurs');
+            const backFromLesen = document.getElementById('backFromLesen');
+            const backFromHoeren = document.getElementById('backFromHoeren');
+            const backFromSchreiben = document.getElementById('backFromSchreiben');
+            const backFromPdfs = document.getElementById('backFromPdfs');
+            const backFromExams = document.getElementById('backFromExams');
+            const backFromProfile = document.getElementById('backFromProfile');
+
+            // أزرار القائمة
+            const kursCard = document.getElementById('kursCard');
+            const examsCard = document.getElementById('examsCard');
+            const lesenCard = document.getElementById('lesenCard');
+            const hoerenCard = document.getElementById('hoerenCard');
+            const schreibenCard = document.getElementById('schreibenCard');
+            const pdfsCard = document.getElementById('pdfsCard');
 
             // عناصر تسجيل الدخول
             const emailInput = document.getElementById('emailInput');
@@ -860,18 +2143,38 @@
             const loginButton = document.getElementById('loginButton');
             const signupButton = document.getElementById('signupButton');
             const guestButton = document.getElementById('guestButton');
-            const confirmSignupButton = document.getElementById('confirmSignupButton');
-            const loginForm = document.getElementById('loginForm');
-            const signupForm = document.getElementById('signupForm');
-
-            // عناصر التسجيل
-            const fullNameInput = document.getElementById('fullNameInput');
-            const signupEmailInput = document.getElementById('signupEmailInput');
-            const signupPasswordInput = document.getElementById('signupPasswordInput');
-            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 
             // عناصر التحكم
-            const backToLogin = document.getElementById('backToLogin');
+            const themeToggle = document.getElementById('themeToggle');
+            const supportBtn = document.getElementById('supportBtn');
+            const profileBtn = document.getElementById('profileBtn');
+
+            // النماذج المنبثقة
+            const phoneModal = document.getElementById('phoneModal');
+            const supportModal = document.getElementById('supportModal');
+            const editModal = document.getElementById('editModal');
+            const closePhoneModal = document.getElementById('closePhoneModal');
+            const closeSupportModal = document.getElementById('closeSupportModal');
+            const subscriptionActivation = document.getElementById('subscriptionActivation');
+
+            // محدد اللغة
+            const langBtn = document.getElementById('langBtn');
+            const langDropdown = document.getElementById('langDropdown');
+
+            // العداد والشارات
+            const trialBanner = document.getElementById('trialBanner');
+            const trialTimer = document.getElementById('trialTimer');
+            const premiumBadge = document.getElementById('premiumBadge');
+
+            // عناصر الملف الشخصي
+            const editProfileBtn = document.getElementById('editProfileBtn');
+            const changePasswordBtn = document.getElementById('changePasswordBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const saveProfile = document.getElementById('saveProfile');
+            const changePassword = document.getElementById('changePassword');
+            const cancelEdit = document.getElementById('cancelEdit');
+
+            // عناصر صفحة الانتظار
             const signOutWaiting = document.getElementById('signOutWaiting');
 
             // Toast container
@@ -879,9 +2182,30 @@
 
             // المتغيرات العامة
             let currentUser = null;
+            let currentLanguage = 'ar';
+            let trialExpiry = new Date();
             let isGuest = false;
+            let examDate = new Date();
+            examDate.setMonth(examDate.getMonth() + 1); // افتراضي: بعد شهر من الآن
+            
+            // تحميل وقت انتهاء التجربة من localStorage
+            const savedTrialExpiry = localStorage.getItem('trialExpiry');
+            if (savedTrialExpiry) {
+                trialExpiry = new Date(savedTrialExpiry);
+            } else {
+                trialExpiry.setHours(trialExpiry.getHours() + 24);
+                localStorage.setItem('trialExpiry', trialExpiry.toISOString());
+            }
 
-            // وظائف المصادقة - الإصدار المصحح تماماً
+            // تحميل تاريخ الامتحان من localStorage
+            const savedExamDate = localStorage.getItem('examDate');
+            if (savedExamDate) {
+                examDate = new Date(savedExamDate);
+            } else {
+                localStorage.setItem('examDate', examDate.toISOString());
+            }
+
+            // وظائف المصادقة
             async function handleLogin() {
                 const email = emailInput.value.trim();
                 const password = passwordInput.value;
@@ -900,12 +2224,14 @@
                     if (error) throw error;
 
                     currentUser = data.user;
-                    showToast('تم تسجيل الدخول بنجاح!', 'success');
                     
-                    // التحقق من صلاحية المستخدم مباشرة
+                    // التحقق من صلاحية المستخدم
                     const hasAccess = await checkUserAccess();
+                    
                     if (hasAccess) {
+                        showToast('تم تسجيل الدخول بنجاح!', 'success');
                         showPage('menu');
+                        updateUIForLoggedInUser();
                     } else {
                         showPage('waiting');
                     }
@@ -917,18 +2243,11 @@
             }
 
             async function handleSignUp() {
-                const fullName = fullNameInput.value.trim();
-                const email = signupEmailInput.value.trim();
-                const password = signupPasswordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
                 
-                if (!fullName || !email || !password || !confirmPassword) {
-                    showToast('يرجى ملء جميع الحقول', 'error');
-                    return;
-                }
-                
-                if (password !== confirmPassword) {
-                    showToast('كلمات المرور غير متطابقة', 'error');
+                if (!email || !password) {
+                    showToast('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
                     return;
                 }
                 
@@ -943,24 +2262,71 @@
                         password,
                         options: {
                             data: {
-                                full_name: fullName
+                                full_name: email.split('@')[0]
                             }
                         }
                     });
 
                     if (error) throw error;
 
-                    showToast('تم إنشاء الحساب بنجاح! جاري انتظار موافقة المسؤول', 'success');
+                    // إضافة المستخدم إلى جدول طلبات التسجيل
+                    if (data.user) {
+                        await addUserToRegistrationRequests(data.user);
+                    }
+
+                    showToast('تم إنشاء الحساب بنجاح! يرجى انتظار موافقة المسؤول', 'success');
                     showPage('waiting');
                     
-                    // تنظيف الحقول
-                    fullNameInput.value = '';
-                    signupEmailInput.value = '';
-                    signupPasswordInput.value = '';
-                    confirmPasswordInput.value = '';
+                    // إعادة تعيين الحقول
+                    emailInput.value = '';
+                    passwordInput.value = '';
                     
                 } catch (error) {
                     showToast('خطأ في إنشاء الحساب: ' + error.message, 'error');
+                }
+            }
+
+            async function addUserToRegistrationRequests(user) {
+                try {
+                    const { data, error } = await supabase
+                        .from('registration_requests')
+                        .insert([
+                            {
+                                user_id: user.id,
+                                email: user.email,
+                                full_name: user.email.split('@')[0],
+                                status: 'pending'
+                            }
+                        ]);
+
+                    if (error) throw error;
+                    
+                    return data;
+                } catch (error) {
+                    console.error('Error adding user to registration requests:', error);
+                }
+            }
+
+            async function checkUserAccess() {
+                if (!currentUser) return false;
+                
+                try {
+                    const { data, error } = await supabase
+                        .from('user_permissions')
+                        .select('can_access, is_admin')
+                        .eq('user_id', currentUser.id)
+                        .single();
+
+                    // إذا لم يكن للمستخدم صلاحية أو لم يتم العثور على بياناته
+                    if (error || !data || !data.can_access) {
+                        return false;
+                    }
+
+                    return true;
+
+                } catch (error) {
+                    console.error('Error checking user access:', error);
+                    return false;
                 }
             }
 
@@ -971,7 +2337,9 @@
                     
                     currentUser = null;
                     isGuest = false;
+                    updateUIForLoggedOutUser();
                     showPage('login');
+                    
                     showToast('تم تسجيل الخروج بنجاح', 'success');
                     
                 } catch (error) {
@@ -981,35 +2349,36 @@
             }
 
             function handleGuestLogin() {
+                if (isTrialExpired()) {
+                    showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                    showPage('login');
+                    return;
+                }
+                
                 showToast('الوضع الضيف محدود الوصول. يرجى التسجيل للوصول الكامل.', 'info');
+                
                 currentUser = { guest: true };
                 isGuest = true;
+                updateUIForGuestUser();
                 showPage('menu');
             }
 
-            // وظيفة التحقق من صلاحية المستخدم - الإصدار المصحح تماماً
-            async function checkUserAccess() {
-                if (!currentUser) return false;
-                
-                try {
-                    // التحقق مباشرة من جدول user_permissions
-                    const { data, error } = await supabase
-                        .from('user_permissions')
-                        .select('can_access')
-                        .eq('user_id', currentUser.id)
-                        .single();
+            function updateUIForLoggedInUser() {
+                profileBtn.style.display = 'flex';
+                premiumBadge.style.display = 'flex';
+                trialBanner.style.display = 'none';
+            }
 
-                    if (error) {
-                        console.log('User permissions not found, waiting for approval');
-                        return false;
-                    }
+            function updateUIForLoggedOutUser() {
+                profileBtn.style.display = 'none';
+                premiumBadge.style.display = 'none';
+                trialBanner.style.display = 'none';
+            }
 
-                    return data && data.can_access;
-
-                } catch (error) {
-                    console.error('Error checking user access:', error);
-                    return false;
-                }
+            function updateUIForGuestUser() {
+                profileBtn.style.display = 'none';
+                premiumBadge.style.display = 'none';
+                trialBanner.style.display = 'block';
             }
 
             // وظائف التنقل
@@ -1021,6 +2390,236 @@
                 if (pages[pageName]) {
                     pages[pageName].classList.add('active');
                 }
+                
+                if (pageName === 'exams') {
+                    populateExamsGrid();
+                } else if (pageName === 'lesen') {
+                    populateLesenGrid();
+                } else if (pageName === 'hoeren') {
+                    populateHoerenGrid();
+                } else if (pageName === 'schreiben') {
+                    populateSchreibenGrid();
+                } else if (pageName === 'pdfs') {
+                    populatePdfsGrid();
+                } else if (pageName === 'profile') {
+                    updateProfileDisplay();
+                }
+                
+                updateTexts();
+            }
+
+            // إضافة الامتحانات إلى الشبكات
+            function populateExamsGrid() {
+                const examsGrid = document.getElementById('examsGrid');
+                examsGrid.innerHTML = '';
+                
+                themaKompliExams.forEach((exam, index) => {
+                    const examName = exam.replace('.html', '');
+                    const examCard = document.createElement('div');
+                    examCard.className = 'exam-card';
+                    examCard.style.animationDelay = `${index * 0.1}s`;
+                    examCard.innerHTML = `
+                        <h3>${examName}</h3>
+                        <p>${currentLanguage === 'ar' ? 'تحضير الامتحان' : 'Exam Preparation'}</p>
+                    `;
+                    examCard.addEventListener('click', () => {
+                        if ((currentUser?.guest || isGuest) && isTrialExpired()) {
+                            showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                            return;
+                        }
+                        // في التطبيق الحقيقي، سيتم توجيه المستخدم إلى الملف المناسب
+                        window.location.href = 'THEMA KOMPLI/' + exam;
+                    });
+                    examsGrid.appendChild(examCard);
+                });
+            }
+
+            function populateLesenGrid() {
+                const lesenGrid = document.getElementById('lesenGrid');
+                lesenGrid.innerHTML = '';
+                
+                lesenExams.forEach((exam, index) => {
+                    const examName = exam.replace('.html', '');
+                    const examCard = document.createElement('div');
+                    examCard.className = 'exam-card';
+                    examCard.style.animationDelay = `${index * 0.1}s`;
+                    examCard.innerHTML = `
+                        <h3>${examName}</h3>
+                        <p>${currentLanguage === 'ar' ? 'تمرين القراءة' : 'Reading Exercise'}</p>
+                    `;
+                    examCard.addEventListener('click', () => {
+                        if ((currentUser?.guest || isGuest) && isTrialExpired()) {
+                            showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                            return;
+                        }
+                        // في التطبيق الحقيقي، سيتم توجيه المستخدم إلى الملف المناسب
+                        window.location.href = 'KURS/LESEN/' + exam;
+                    });
+                    lesenGrid.appendChild(examCard);
+                });
+            }
+
+            function populateHoerenGrid() {
+                const hoerenGrid = document.getElementById('hoerenGrid');
+                hoerenGrid.innerHTML = '';
+                
+                hoerenExams.forEach((exam, index) => {
+                    const examName = exam.replace('.html', '');
+                    const examCard = document.createElement('div');
+                    examCard.className = 'exam-card';
+                    examCard.style.animationDelay = `${index * 0.1}s`;
+                    examCard.innerHTML = `
+                        <h3>${examName}</h3>
+                        <p>${currentLanguage === 'ar' ? 'تمرين الاستماع' : 'Listening Exercise'}</p>
+                    `;
+                    examCard.addEventListener('click', () => {
+                        if ((currentUser?.guest || isGuest) && isTrialExpired()) {
+                            showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                            return;
+                        }
+                        // في التطبيق الحقيقي، سيتم توجيه المستخدم إلى الملف المناسب
+                        window.location.href = 'KURS/HÖREN/' + exam;
+                    });
+                    hoerenGrid.appendChild(examCard);
+                });
+            }
+
+            function populateSchreibenGrid() {
+                const schreibenGrid = document.getElementById('schreibenGrid');
+                schreibenGrid.innerHTML = '';
+                
+                schreibenExams.forEach((exam, index) => {
+                    const examName = exam.replace('.html', '');
+                    const examCard = document.createElement('div');
+                    examCard.className = 'exam-card';
+                    examCard.style.animationDelay = `${index * 0.1}s`;
+                    examCard.innerHTML = `
+                        <h3>${examName}</h3>
+                        <p>${currentLanguage === 'ar' ? 'تمرين الكتابة' : 'Writing Exercise'}</p>
+                    `;
+                    examCard.addEventListener('click', () => {
+                        if ((currentUser?.guest || isGuest) && isTrialExpired()) {
+                            showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                            return;
+                        }
+                        // في التطبيق الحقيقي، سيتم توجيه المستخدم إلى الملف المناسب
+                        window.location.href = 'KURS/SCHREIBEN/' + exam;
+                    });
+                    schreibenGrid.appendChild(examCard);
+                });
+            }
+
+            function populatePdfsGrid() {
+                const pdfsGrid = document.getElementById('pdfsGrid');
+                pdfsGrid.innerHTML = '';
+                
+                pdfs.forEach((pdf, index) => {
+                    const pdfName = pdf.replace('.pdf', '');
+                    const pdfCard = document.createElement('div');
+                    pdfCard.className = 'exam-card';
+                    pdfCard.style.animationDelay = `${index * 0.1}s`;
+                    pdfCard.innerHTML = `
+                        <h3>${pdfName}</h3>
+                        <p>${currentLanguage === 'ar' ? 'تحميل الملف' : 'Download File'}</p>
+                    `;
+                    pdfCard.addEventListener('click', () => {
+                        if ((currentUser?.guest || isGuest) && isTrialExpired()) {
+                            showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                            return;
+                        }
+                        // في التطبيق الحقيقي، سيتم توجيه المستخدم إلى الملف المناسب
+                        window.location.href = 'PDFs/' + pdf;
+                    });
+                    pdfsGrid.appendChild(pdfCard);
+                });
+            }
+
+            function isTrialExpired() {
+                return new Date() > trialExpiry;
+            }
+
+            // تحديث الملف الشخصي
+            function updateProfileDisplay() {
+                if (currentUser && !currentUser.guest) {
+                    const userName = currentUser.email ? currentUser.email.split('@')[0] : 'مستخدم';
+                    document.getElementById('userName').textContent = userName;
+                    document.getElementById('profileName').textContent = userName;
+                    document.getElementById('userAvatar').textContent = userName.charAt(0);
+                    document.getElementById('profileEmail').textContent = currentUser.email || 'غير متوفر';
+                }
+                
+                // تحديث عداد الامتحان
+                updateExamCountdown();
+            }
+
+            // تحديث عداد الامتحان
+            function updateExamCountdown() {
+                const now = new Date();
+                const diff = examDate - now;
+                
+                if (diff <= 0) {
+                    document.getElementById('examCountdown').textContent = "00:00:00";
+                } else {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('examCountdown').textContent = 
+                        `${days} يوم ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+
+            // تحديث عداد الوقت
+            function updateCountdown() {
+                const now = new Date();
+                const diff = trialExpiry - now;
+                
+                if (diff <= 0) {
+                    trialTimer.textContent = "00:00:00";
+                    trialBanner.classList.add('expired');
+                    if (isGuest) {
+                        showToast('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
+                        showPage('login');
+                    }
+                } else {
+                    const hours = Math.floor(diff / (1000 * 60 * 60));
+                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                    
+                    trialTimer.textContent = 
+                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                }
+            }
+
+            // تغيير اللغة
+            function changeLanguage(lang) {
+                currentLanguage = lang;
+                updateTexts();
+                localStorage.setItem('language', lang);
+                
+                const langTexts = {
+                    ar: '🇸🇦 العربية',
+                    de: '🇩🇪 Deutsch', 
+                    en: '🇬🇧 English'
+                };
+                langBtn.innerHTML = `<span>${langTexts[lang]}</span>`;
+                
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.documentElement.lang = lang;
+            }
+
+            // تحديث النصوص حسب اللغة
+            function updateTexts() {
+                const t = translations[currentLanguage];
+                if (!t) return;
+                
+                Object.keys(t).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.textContent = t[key];
+                    }
+                });
             }
 
             // عرض Toast
@@ -1031,6 +2630,7 @@
                 const icons = {
                     success: 'fa-check-circle',
                     error: 'fa-exclamation-circle',
+                    warning: 'fa-exclamation-triangle',
                     info: 'fa-info-circle'
                 };
                 
@@ -1046,6 +2646,86 @@
                 }, 5000);
             }
 
+            // معالجة رفع الصورة
+            function handleImageUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('userAvatar').style.backgroundImage = `url(${e.target.result})`;
+                        localStorage.setItem('userAvatar', e.target.result);
+                        showToast('تم تحديث الصورة بنجاح', 'success');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // تحميل الصورة المحفوظة
+            function loadSavedAvatar() {
+                const savedAvatar = localStorage.getItem('userAvatar');
+                if (savedAvatar) {
+                    document.getElementById('userAvatar').style.backgroundImage = `url(${savedAvatar})`;
+                }
+            }
+
+            // فتح نموذج تعديل الملف الشخصي
+            function openEditProfile() {
+                // تعبئة النموذج بالبيانات الحالية
+                document.getElementById('editName').value = document.getElementById('profileName').textContent;
+                document.getElementById('editEmail').value = document.getElementById('profileEmail').textContent;
+                document.getElementById('editPhone').value = document.getElementById('profilePhone').textContent;
+                document.getElementById('editLocation').value = document.getElementById('profileLocation').textContent;
+                document.getElementById('editExamDate').value = formatDateForInput(examDate);
+                document.getElementById('editExamLocation').value = document.getElementById('profileExamLocation').textContent;
+                
+                editModal.style.display = 'flex';
+            }
+
+            // حفظ تعديلات الملف الشخصي
+            function saveProfileChanges() {
+                const name = document.getElementById('editName').value;
+                const email = document.getElementById('editEmail').value;
+                const phone = document.getElementById('editPhone').value;
+                const location = document.getElementById('editLocation').value;
+                const examDateInput = document.getElementById('editExamDate').value;
+                const examLocation = document.getElementById('editExamLocation').value;
+                
+                // تحديث البيانات في الواجهة
+                document.getElementById('userName').textContent = name;
+                document.getElementById('profileName').textContent = name;
+                document.getElementById('profileEmail').textContent = email;
+                document.getElementById('profilePhone').textContent = phone;
+                document.getElementById('profileLocation').textContent = location;
+                document.getElementById('profileExamLocation').textContent = examLocation;
+                
+                // تحديث تاريخ الامتحان
+                if (examDateInput) {
+                    examDate = new Date(examDateInput);
+                    localStorage.setItem('examDate', examDate.toISOString());
+                    updateExamCountdown();
+                }
+                
+                showToast('تم حفظ التغييرات بنجاح', 'success');
+                editModal.style.display = 'none';
+            }
+
+            // تغيير كلمة المرور
+            function changeUserPassword() {
+                const newPassword = prompt('أدخل كلمة المرور الجديدة:');
+                if (newPassword && newPassword.trim() !== '') {
+                    // في التطبيق الحقيقي، سيتم تحديث كلمة المرور في Supabase
+                    showToast('تم تغيير كلمة المرور بنجاح', 'success');
+                }
+            }
+
+            // تنسيق التاريخ لحقل الإدخال
+            function formatDateForInput(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+
             // التحقق من حالة تسجيل الدخول المحفوظة
             async function checkLoginStatus() {
                 try {
@@ -1054,16 +2734,19 @@
                     
                     if (data.session) {
                         currentUser = data.session.user;
-                        
+                        // التحقق من صلاحية المستخدم
                         const hasAccess = await checkUserAccess();
+                        
                         if (hasAccess) {
                             showPage('menu');
+                            updateUIForLoggedInUser();
                         } else {
                             showPage('waiting');
                         }
                         return;
                     }
                     
+                    // إذا لم يكن هناك جلسة، عرض صفحة تسجيل الدخول
                     showPage('login');
                 } catch (error) {
                     console.error('Error checking auth status:', error);
@@ -1075,34 +2758,116 @@
             function setupEventListeners() {
                 // تسجيل الدخول والتسجيل
                 loginButton.addEventListener('click', handleLogin);
-                signupButton.addEventListener('click', () => {
-                    loginForm.style.display = 'none';
-                    signupForm.classList.add('active');
-                    signupButton.style.display = 'none';
-                });
-                confirmSignupButton.addEventListener('click', handleSignUp);
+                signupButton.addEventListener('click', handleSignUp);
                 guestButton.addEventListener('click', handleGuestLogin);
                 
                 // التنقل بين الصفحات
                 backToLogin.addEventListener('click', handleSignOut);
+                backFromKurs.addEventListener('click', () => showPage('menu'));
+                backFromLesen.addEventListener('click', () => showPage('kurs'));
+                backFromHoeren.addEventListener('click', () => showPage('kurs'));
+                backFromSchreiben.addEventListener('click', () => showPage('kurs'));
+                backFromPdfs.addEventListener('click', () => showPage('kurs'));
+                backFromExams.addEventListener('click', () => showPage('menu'));
+                backFromProfile.addEventListener('click', () => showPage('menu'));
+                
+                // القائمة الرئيسية
+                kursCard.addEventListener('click', () => showPage('kurs'));
+                examsCard.addEventListener('click', () => showPage('exams'));
+                
+                // القائمة الفرعية لـ KURS
+                lesenCard.addEventListener('click', () => showPage('lesen'));
+                hoerenCard.addEventListener('click', () => showPage('hoeren'));
+                schreibenCard.addEventListener('click', () => showPage('schreiben'));
+                pdfsCard.addEventListener('click', () => showPage('pdfs'));
+                
+                // عناصر التحكم
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-mode');
+                    themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+                    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+                });
+                
+                supportBtn.addEventListener('click', () => {
+                    supportModal.style.display = 'flex';
+                });
+                
+                profileBtn.addEventListener('click', () => {
+                    showPage('profile');
+                });
+                
+                // زر التاج
+                premiumBadge.addEventListener('click', () => {
+                    showToast('أنت مشترك! شكراً على دعمك 💎', 'info');
+                });
+                
+                // النماذج المنبثقة
+                subscriptionActivation.addEventListener('click', () => {
+                    phoneModal.style.display = 'flex';
+                });
+                
+                closePhoneModal.addEventListener('click', () => {
+                    phoneModal.style.display = 'none';
+                });
+                
+                closeSupportModal.addEventListener('click', () => {
+                    supportModal.style.display = 'none';
+                });
+                
+                // إغلاق النماذج بالنقر خارجها
+                phoneModal.addEventListener('click', (e) => {
+                    if (e.target === phoneModal) {
+                        phoneModal.style.display = 'none';
+                    }
+                });
+                
+                supportModal.addEventListener('click', (e) => {
+                    if (e.target === supportModal) {
+                        supportModal.style.display = 'none';
+                    }
+                });
+                
+                editModal.addEventListener('click', (e) => {
+                    if (e.target === editModal) {
+                        editModal.style.display = 'none';
+                    }
+                });
+                
+                // محدد اللغة
+                langBtn.addEventListener('click', () => {
+                    langDropdown.classList.toggle('show');
+                });
+                
+                document.querySelectorAll('.lang-option').forEach(option => {
+                    option.addEventListener('click', () => {
+                        const lang = option.getAttribute('data-lang');
+                        changeLanguage(lang);
+                        langDropdown.classList.remove('show');
+                    });
+                });
+                
+                // إغلاق القوائم المنسدلة بالنقر خارجها
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.language-selector')) {
+                        langDropdown.classList.remove('show');
+                    }
+                });
+                
+                // رفع الصورة
+                document.getElementById('imageUpload').addEventListener('change', handleImageUpload);
+                
+                // تعديل الملف الشخصي
+                editProfileBtn.addEventListener('click', openEditProfile);
+                saveProfile.addEventListener('click', saveProfileChanges);
+                changePasswordBtn.addEventListener('click', changeUserPassword);
+                changePassword.addEventListener('click', changeUserPassword);
+                cancelEdit.addEventListener('click', () => {
+                    editModal.style.display = 'none';
+                });
+                
+                // تسجيل الخروج
+                logoutBtn.addEventListener('click', handleSignOut);
                 signOutWaiting.addEventListener('click', handleSignOut);
-
-                // التنقل في القوائم
-                document.getElementById('kursCard').addEventListener('click', () => showPage('kurs'));
-                document.getElementById('examsCard').addEventListener('click', () => showPage('exams'));
-                document.getElementById('backFromKurs').addEventListener('click', () => showPage('menu'));
-
-                // KURS submenu
-                document.getElementById('lesenCard').addEventListener('click', () => showPage('lesen'));
-                document.getElementById('hoerenCard').addEventListener('click', () => showPage('hoeren'));
-                document.getElementById('schreibenCard').addEventListener('click', () => showPage('schreiben'));
-                document.getElementById('pdfsCard').addEventListener('click', () => showPage('pdfs'));
-
-                // Back buttons from submenus
-                document.getElementById('backFromLesen').addEventListener('click', () => showPage('kurs'));
-                document.getElementById('backFromHoeren').addEventListener('click', () => showPage('kurs'));
-                document.getElementById('backFromSchreiben').addEventListener('click', () => showPage('kurs'));
-                document.getElementById('backFromPdfs').addEventListener('click', () => showPage('kurs'));
 
                 // إدخال بالإنتر
                 passwordInput.addEventListener('keypress', (e) => {
@@ -1110,18 +2875,31 @@
                         handleLogin();
                     }
                 });
-
-                signupPasswordInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        handleSignUp();
-                    }
-                });
             }
 
             // بدء التطبيق
             async function init() {
+                // تحميل الإعدادات المحفوظة
+                const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+                if (savedDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    themeToggle.textContent = '☀️';
+                }
+                
+                const savedLanguage = localStorage.getItem('language') || 'ar';
+                changeLanguage(savedLanguage);
+                
+                // تحميل الصورة المحفوظة
+                loadSavedAvatar();
+                
+                // التحقق من حالة تسجيل الدخول
                 await checkLoginStatus();
+                
                 setupEventListeners();
+                updateCountdown();
+                updateExamCountdown();
+                setInterval(updateCountdown, 1000);
+                setInterval(updateExamCountdown, 1000);
             }
 
             init();
