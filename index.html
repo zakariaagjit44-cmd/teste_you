@@ -47,7 +47,6 @@
             color: var(--light);
         }
 
-        /* Floating Elements */
         .floating-elements {
             position: fixed;
             width: 100%;
@@ -78,7 +77,6 @@
             66% { transform: translateY(-15px) rotate(-3deg) scale(0.95); }
         }
 
-        /* Header Controls */
         .header-controls {
             position: fixed;
             top: 20px;
@@ -101,35 +99,13 @@
             border: none;
             background: var(--primary);
             color: var(--white);
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
-        }
-
-        .control-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .control-btn:hover::before {
-            width: 100%;
-            height: 100%;
         }
 
         .control-btn:hover {
             transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
         }
 
-        /* Language Selector */
         .language-selector {
             position: fixed;
             top: 20px;
@@ -146,17 +122,10 @@
             font-weight: 600;
             color: var(--primary-dark);
             box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
-        }
-
-        .dark-mode .lang-btn {
-            background: rgba(13, 71, 161, 0.95);
-            color: var(--light);
-            border: 2px solid var(--secondary);
         }
 
         .lang-btn:hover {
@@ -176,17 +145,6 @@
             display: none;
             overflow: hidden;
             min-width: 120px;
-            animation: dropdownSlide 0.3s ease;
-        }
-
-        .dark-mode .lang-dropdown {
-            background: #1a237e;
-            color: var(--light);
-        }
-
-        @keyframes dropdownSlide {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .lang-dropdown.show {
@@ -201,28 +159,12 @@
             align-items: center;
             gap: 0.5rem;
             transition: var(--transition);
-            color: var(--text);
-        }
-
-        .dark-mode .lang-option {
-            color: var(--light);
-            border-bottom: 1px solid #37474F;
         }
 
         .lang-option:hover {
             background: #f5f5f5;
-            transform: translateX(5px);
         }
 
-        .dark-mode .lang-option:hover {
-            background: #283593;
-        }
-
-        .lang-option:last-child {
-            border-bottom: none;
-        }
-
-        /* Trial Countdown Banner */
         .trial-banner {
             position: fixed;
             top: 0;
@@ -234,42 +176,9 @@
             text-align: center;
             z-index: 999;
             box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
-            animation: slideDown 0.5s ease;
             display: none;
         }
 
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .trial-banner.expired {
-            background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
-        }
-
-        .trial-banner-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .trial-text {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .trial-timer {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            font-size: 1.1rem;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-        }
-
-        /* Premium Crown Badge */
         .premium-badge {
             position: fixed;
             top: 85px;
@@ -285,7 +194,6 @@
             box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
             animation: rotate 4s linear infinite;
             display: none;
-            cursor: pointer;
         }
 
         @keyframes rotate {
@@ -293,7 +201,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Subscription Activation Box - Smaller */
         .subscription-activation {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
             color: var(--white);
@@ -312,11 +219,9 @@
 
         .subscription-activation:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(66, 165, 245, 0.4);
         }
 
-        /* Phone Modal */
-        .phone-modal {
+        .phone-modal, .support-modal {
             display: none;
             position: fixed;
             top: 0;
@@ -329,7 +234,7 @@
             justify-content: center;
         }
 
-        .phone-modal-content {
+        .phone-modal-content, .support-modal-content {
             background: var(--white);
             padding: 2rem;
             border-radius: var(--radius);
@@ -337,29 +242,6 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             max-width: 400px;
             width: 90%;
-            animation: modalAppear 0.3s ease;
-        }
-
-        .dark-mode .phone-modal-content {
-            background: #1a237e;
-            color: var(--light);
-        }
-
-        @keyframes modalAppear {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .phone-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 1.5rem 0;
-            color: var(--primary-dark);
-            direction: ltr;
-        }
-
-        .dark-mode .phone-number {
-            color: #90CAF9;
         }
 
         .close-modal {
@@ -375,10 +257,8 @@
 
         .close-modal:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
         }
 
-        /* Login Page */
         .login-container {
             min-height: 100vh;
             display: flex;
@@ -399,17 +279,6 @@
             backdrop-filter: blur(15px);
             position: relative;
             z-index: 2;
-            animation: contentSlideUp 0.8s ease;
-        }
-
-        @keyframes contentSlideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dark-mode .login-content {
-            background: rgba(13, 71, 161, 0.95);
-            border: 1px solid rgba(227, 242, 253, 0.2);
         }
 
         .login-content h1 {
@@ -419,24 +288,6 @@
             background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: titleGlow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 5px rgba(33, 150, 243, 0.5)); }
-            to { filter: drop-shadow(0 0 15px rgba(33, 150, 243, 0.8)); }
-        }
-
-        .login-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .dark-mode .login-subtitle {
-            color: #B0BEC5;
         }
 
         .auth-buttons {
@@ -453,8 +304,6 @@
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            position: relative;
-            overflow: hidden;
             border: none;
             display: flex;
             align-items: center;
@@ -464,24 +313,8 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        .auth-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: right 0.6s;
-        }
-
-        .auth-btn:hover::before {
-            right: 100%;
-        }
-
         .auth-btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
         }
 
         .login-btn {
@@ -520,46 +353,20 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary-dark);
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
-            transform: scale(1.02);
         }
 
-        .dark-mode .form-input {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            border: 2px solid var(--secondary);
-        }
-
-        /* Forgot Password Link */
-        .forgot-password {
-            margin-top: 0.5rem;
-            text-align: center;
-        }
-
-        .forgot-password-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .forgot-password-link:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        /* Register Form */
-        .register-form {
-            display: flex;
+        .signup-form {
+            display: none;
             flex-direction: column;
             gap: 1.2rem;
             max-width: 350px;
             margin: 0 auto 2rem;
-            display: none;
         }
 
-        /* Menu Page */
+        .signup-form.active {
+            display: flex;
+        }
+
         .menu-container {
             min-height: 100vh;
             padding: 2rem;
@@ -570,7 +377,6 @@
             text-align: center;
             margin-bottom: 3rem;
             padding-top: 5rem;
-            animation: contentSlideUp 0.8s ease;
         }
 
         .header h1 {
@@ -578,13 +384,6 @@
             color: var(--primary-dark);
             margin-bottom: 1rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .dark-mode .header h1 {
-            color: #90CAF9;
         }
 
         .page-subtitle {
@@ -593,10 +392,6 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
-        }
-
-        .dark-mode .page-subtitle {
-            color: #B0BEC5;
         }
 
         .menu-grid {
@@ -616,60 +411,17 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
-            transform: translateY(50px);
-            opacity: 0;
-            animation: cardSlideUp 0.8s ease forwards;
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
         }
 
-        .menu-card:nth-child(1) { animation-delay: 0.2s; }
-        .menu-card:nth-child(2) { animation-delay: 0.4s; }
-
-        @keyframes cardSlideUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .menu-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s ease;
-        }
-
-        .menu-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .dark-mode .menu-card {
-            background: rgba(13, 71, 161, 0.95);
-            border: 1px solid rgba(227, 242, 253, 0.2);
-        }
-
         .menu-card:hover {
-            transform: translateY(-15px) scale(1.05);
+            transform: translateY(-15px);
             box-shadow: var(--shadow-hover);
         }
 
         .menu-card-icon {
             font-size: 5rem;
             margin-bottom: 2rem;
-            filter: drop-shadow(0 6px 12px rgba(33, 150, 243, 0.3));
-            transition: var(--transition);
-        }
-
-        .menu-card:hover .menu-card-icon {
-            transform: scale(1.2) rotate(8deg);
         }
 
         .menu-card h2 {
@@ -677,20 +429,6 @@
             margin-bottom: 1.5rem;
             color: var(--primary-dark);
             font-weight: 600;
-        }
-
-        .dark-mode .menu-card h2 {
-            color: #90CAF9;
-        }
-
-        .menu-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            font-size: 1.1rem;
-        }
-
-        .dark-mode .menu-card p {
-            color: var(--light);
         }
 
         .back-btn {
@@ -706,32 +444,13 @@
             gap: 0.8rem;
             box-shadow: var(--shadow);
             font-weight: 600;
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
         }
 
-        .back-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .back-btn:hover::before {
-            left: 100%;
-        }
-
         .back-btn:hover {
-            transform: translateX(-8px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
+            transform: translateX(-8px);
         }
 
-        /* Exams Page */
         .exams-container {
             min-height: 100vh;
             padding: 2rem;
@@ -755,67 +474,14 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
-            transform: translateY(30px);
-            opacity: 0;
-            animation: cardSlideUp 0.6s ease forwards;
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
         }
 
-        .exam-card:nth-child(odd) { animation-delay: 0.1s; }
-        .exam-card:nth-child(even) { animation-delay: 0.2s; }
-
-        .dark-mode .exam-card {
-            background: rgba(13, 71, 161, 0.95);
-            border: 1px solid rgba(227, 242, 253, 0.2);
-        }
-
         .exam-card:hover {
-            transform: translateY(-12px) scale(1.08);
+            transform: translateY(-12px);
             box-shadow: var(--shadow-hover);
         }
 
-        .exam-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .exam-card:hover::after {
-            opacity: 1;
-        }
-
-        .exam-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-            font-size: 1.4rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 2;
-        }
-
-        .dark-mode .exam-card h3 {
-            color: #90CAF9;
-        }
-
-        .exam-card p {
-            color: var(--text-light);
-            position: relative;
-            z-index: 2;
-        }
-
-        .dark-mode .exam-card p {
-            color: var(--light);
-        }
-
-        /* KURS Submenu */
         .kurs-submenu {
             display: none;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -837,53 +503,14 @@
             cursor: pointer;
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
-            transform: translateY(30px);
-            opacity: 0;
-            animation: cardSlideUp 0.6s ease forwards;
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
         }
 
-        .kurs-card:nth-child(1) { animation-delay: 0.1s; }
-        .kurs-card:nth-child(2) { animation-delay: 0.2s; }
-        .kurs-card:nth-child(3) { animation-delay: 0.3s; }
-        .kurs-card:nth-child(4) { animation-delay: 0.4s; }
-
-        .dark-mode .kurs-card {
-            background: rgba(13, 71, 161, 0.95);
-            border: 1px solid rgba(227, 242, 253, 0.2);
-        }
-
         .kurs-card:hover {
-            transform: translateY(-12px) scale(1.08);
+            transform: translateY(-12px);
             box-shadow: var(--shadow-hover);
         }
 
-        .kurs-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-dark);
-            font-size: 1.4rem;
-            font-weight: 600;
-            position: relative;
-            z-index: 2;
-        }
-
-        .dark-mode .kurs-card h3 {
-            color: #90CAF9;
-        }
-
-        .kurs-card p {
-            color: var(--text-light);
-            position: relative;
-            z-index: 2;
-        }
-
-        .dark-mode .kurs-card p {
-            color: var(--light);
-        }
-
-        /* Back Button for KURS */
         .back-to-kurs {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
             color: var(--white);
@@ -897,669 +524,97 @@
             gap: 0.8rem;
             box-shadow: var(--shadow);
             font-weight: 600;
-            position: relative;
-            overflow: hidden;
             transition: var(--transition);
-        }
-
-        .back-to-kurs::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .back-to-kurs:hover::before {
-            left: 100%;
         }
 
         .back-to-kurs:hover {
-            transform: translateX(-8px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(66, 165, 245, 0.4);
+            transform: translateX(-8px);
         }
 
-        /* Support Modal */
-        .support-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
+        .waiting-container {
+            min-height: 100vh;
+            display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .support-modal-content {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            max-width: 400px;
-            width: 90%;
-            animation: modalAppear 0.3s ease;
-        }
-
-        .dark-mode .support-modal-content {
-            background: #1a237e;
-            color: var(--light);
-        }
-
-        .support-info {
-            margin: 1.5rem 0;
-            padding: 1rem;
-            background: rgba(33, 150, 243, 0.1);
-            border-radius: 15px;
-        }
-
-        .support-item {
-            margin: 1rem 0;
-            font-size: 1.1rem;
-        }
-
-        /* Profile Page */
-        .profile-container {
-            min-height: 100vh;
             padding: 2rem;
             position: relative;
         }
 
-        .profile-card {
+        .waiting-content {
+            text-align: center;
+            padding: 3rem;
+            max-width: 600px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: var(--radius);
-            padding: 3rem;
-            max-width: 900px;
-            margin: 0 auto;
             box-shadow: var(--shadow);
             border: 1px solid rgba(33, 150, 243, 0.2);
             backdrop-filter: blur(15px);
-            transform: translateY(30px);
-            opacity: 0;
-            animation: cardSlideUp 0.8s ease forwards;
-        }
-
-        .dark-mode .profile-card {
-            background: rgba(13, 71, 161, 0.95);
-            border: 1px solid rgba(227, 242, 253, 0.2);
-        }
-
-        .profile-header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        .profile-avatar-container {
             position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
+            z-index: 2;
         }
 
-        .profile-avatar {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--white);
-            font-weight: bold;
-            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
-            border: 4px solid var(--white);
-            animation: avatarPulse 3s ease-in-out infinite;
-            background-size: cover;
-            background-position: center;
-        }
-
-        @keyframes avatarPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        .image-upload-container {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .image-upload-label {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-            transition: var(--transition);
-        }
-
-        .image-upload-label:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
-        }
-
-        .image-upload-input {
-            display: none;
-        }
-
-        .profile-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .info-section {
-            background: rgba(33, 150, 243, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            border: 1px solid rgba(33, 150, 243, 0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        .info-section h3 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .dark-mode .info-section h3 {
-            color: #90CAF9;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(33, 150, 243, 0.2);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .info-label {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .dark-mode .info-label {
-            color: #B0BEC5;
-        }
-
-        .info-value {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        .dark-mode .info-value {
-            color: var(--light);
-        }
-
-        .countdown-section {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 12px 30px rgba(33, 150, 243, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .countdown-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            animation: shine 4s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .countdown-title {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-        }
-
-        .countdown-timer {
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: var(--white);
-            font-family: 'Courier New', monospace;
-            position: relative;
-            z-index: 1;
-        }
-
-        .progress-section {
+        .waiting-icon {
             margin: 2rem 0;
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .progress-section h3 {
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-            font-weight: 600;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
-        .dark-mode .progress-section h3 {
-            color: #90CAF9;
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .progress-bar {
-            background: rgba(255, 255, 255, 0.3);
+        .toast {
+            padding: 1rem 1.5rem;
             border-radius: 10px;
-            height: 20px;
-            margin: 0.5rem 0;
-            overflow: hidden;
-            border: 1px solid rgba(33, 150, 243, 0.2);
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 10px;
-            width: 0%;
-            animation: progressFill 1.5s ease-out forwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: progressShine 2s infinite;
-        }
-
-        @keyframes progressFill {
-            to { width: var(--target-width); }
-        }
-
-        @keyframes progressShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .edit-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+            color: white;
             font-weight: 600;
-            width: 100%;
-            margin-top: 1rem;
-            position: relative;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .edit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .edit-btn:hover::before {
-            left: 100%;
-        }
-
-        .edit-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Delete Account Button */
-        .delete-account-container {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(33, 150, 243, 0.2);
-        }
-
-        .delete-account-btn {
-            background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            margin: 0 auto;
-            transition: var(--transition);
-            box-shadow: 0 6px 20px rgba(244, 67, 54, 0.3);
+            max-width: 350px;
         }
 
-        .delete-account-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(244, 67, 54, 0.4);
-        }
-
-        /* Forgot Password Modal */
-        .forgot-password-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .forgot-password-content {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            max-width: 450px;
-            width: 90%;
-            animation: modalAppear 0.3s ease;
-        }
-
-        .dark-mode .forgot-password-content {
-            background: #1a237e;
-            color: var(--light);
-        }
-
-        .forgot-password-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .forgot-password-header h2 {
-            color: var(--primary-dark);
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        .dark-mode .forgot-password-header h2 {
-            color: #90CAF9;
-        }
-
-        .forgot-password-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .forgot-password-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .send-reset-btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: var(--white);
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .send-reset-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Edit Profile Modal */
-        .edit-profile-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .edit-profile-content {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: modalAppear 0.3s ease;
-        }
-
-        .dark-mode .edit-profile-content {
-            background: #1a237e;
-            color: var(--light);
-        }
-
-        .edit-profile-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .edit-profile-header h2 {
-            color: var(--primary-dark);
-            font-size: 1.8rem;
-            font-weight: 600;
-        }
-
-        .dark-mode .edit-profile-header h2 {
-            color: #90CAF9;
-        }
-
-        .edit-profile-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .dark-mode .form-group label {
-            color: var(--light);
-        }
-
-        .form-group input,
-        .form-group select {
-            padding: 1rem 1.2rem;
-            border-radius: 12px;
-            border: 2px solid var(--primary);
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-
-        .dark-mode .form-group input,
-        .dark-mode .form-group select {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            border: 2px solid var(--secondary);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-dark);
-            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.2);
-            transform: scale(1.02);
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .save-btn {
+        .toast-success {
             background: linear-gradient(135deg, var(--success) 0%, #388E3C 100%);
-            color: var(--white);
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
         }
 
-        .cancel-btn {
+        .toast-error {
             background: linear-gradient(135deg, var(--danger) 0%, #d32f2f 100%);
-            color: var(--white);
-            border: none;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
         }
 
-        .save-btn:hover,
-        .cancel-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .toast-info {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         }
 
-        /* Message System */
-        .message {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            z-index: 10000;
-            color: white;
-            box-shadow: var(--shadow);
-            font-weight: 600;
-            animation: messageSlideDown 0.3s ease;
-        }
-
-        @keyframes messageSlideDown {
-            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        .message.success {
-            background: var(--success);
-        }
-
-        .message.error {
-            background: var(--danger);
-        }
-
-        .message.info {
-            background: var(--primary);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .login-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .menu-grid, .exams-grid, .kurs-submenu {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-controls {
-                top: 15px;
-                right: 15px;
-            }
-            
-            .language-selector {
-                top: 15px;
-                left: 15px;
-            }
-            
-            .control-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.1rem;
-            }
-            
-            .premium-badge {
-                top: 70px;
-                left: 15px;
-                width: 35px;
-                height: 35px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-content {
-                padding: 2rem 1rem;
-            }
-            
-            .menu-card, .exam-card, .kurs-card {
-                padding: 2rem 1rem;
-            }
-            
-            .floating-element {
-                font-size: 2.5rem !important;
-            }
-        }
-
-        /* Page Management */
         .page {
             display: none;
         }
 
         .page.active {
             display: block;
+        }
+
+        @media (max-width: 768px) {
+            .login-content, .waiting-content {
+                padding: 2rem 1.5rem;
+            }
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            .menu-grid, .exams-grid, .kurs-submenu {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1579,7 +634,7 @@
     <!-- Trial Countdown Banner -->
     <div class="trial-banner" id="trialBanner">
         <div class="trial-banner-content">
-            <div class="trial-text" id="trialBannerText">النسخة التجريبية - متبقي:</div>
+            <div class="trial-text">النسخة التجريبية - متبقي:</div>
             <div class="trial-timer" id="trialTimer">24:00:00</div>
         </div>
     </div>
@@ -1615,14 +670,13 @@
         <button class="control-btn theme-toggle" id="themeToggle">🌙</button>
         <button class="control-btn support-btn" id="supportBtn">💬</button>
         <button class="control-btn profile-btn" id="profileBtn" style="display: none;">👤</button>
-        <button class="control-btn notes-btn" id="notesBtn" style="display: none;">📝</button>
     </div>
 
     <!-- Phone Modal -->
     <div class="phone-modal" id="phoneModal">
         <div class="phone-modal-content">
-            <h2 id="phoneModalTitle">تفعيل الاشتراك</h2>
-            <p id="phoneModalText">لتفعيل الاشتراك يرجى التواصل على الرقم التالي:</p>
+            <h2>تفعيل الاشتراك</h2>
+            <p>لتفعيل الاشتراك يرجى التواصل على الرقم التالي:</p>
             <div class="phone-number">+212 649-661976</div>
             <button class="close-modal" id="closePhoneModal">إغلاق</button>
         </div>
@@ -1631,8 +685,8 @@
     <!-- Support Modal -->
     <div class="support-modal" id="supportModal">
         <div class="support-modal-content">
-            <h2 id="supportTitle">اتصال الدعم</h2>
-            <p id="supportText">للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:</p>
+            <h2>اتصال الدعم</h2>
+            <p>للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:</p>
             <div class="support-info">
                 <div class="support-item">
                     <i class="fas fa-phone"></i>
@@ -1647,106 +701,41 @@
         </div>
     </div>
 
-    <!-- Forgot Password Modal -->
-    <div class="forgot-password-modal" id="forgotPasswordModal">
-        <div class="forgot-password-content">
-            <div class="forgot-password-header">
-                <h2>نسيت كلمة المرور؟</h2>
-                <p>أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور</p>
-            </div>
-            <form class="forgot-password-form" id="forgotPasswordForm">
-                <div class="form-group">
-                    <label for="resetEmail">البريد الإلكتروني</label>
-                    <input type="email" id="resetEmail" required placeholder="أدخل بريدك الإلكتروني">
-                </div>
-                <div class="forgot-password-actions">
-                    <button type="submit" class="send-reset-btn">إرسال رابط الاستعادة</button>
-                    <button type="button" class="cancel-btn" id="closeForgotPasswordModal">إلغاء</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Edit Profile Modal -->
-    <div class="edit-profile-modal" id="editProfileModal">
-        <div class="edit-profile-content">
-            <div class="edit-profile-header">
-                <h2>تعديل الملف الشخصي</h2>
-            </div>
-            <form class="edit-profile-form" id="editProfileForm">
-                <div class="form-group">
-                    <label for="editFullName">الاسم الكامل</label>
-                    <input type="text" id="editFullName" required placeholder="أدخل اسمك الكامل">
-                </div>
-                <div class="form-group">
-                    <label for="editEmail">البريد الإلكتروني</label>
-                    <input type="email" id="editEmail" required placeholder="أدخل بريدك الإلكتروني">
-                </div>
-                <div class="form-group">
-                    <label for="editExamDate">تاريخ ووقت الامتحان</label>
-                    <input type="datetime-local" id="editExamDate" required>
-                </div>
-                <div class="form-group">
-                    <label for="editExamCity">مدينة الامتحان</label>
-                    <select id="editExamCity" required>
-                        <option value="">اختر مدينة الامتحان</option>
-                        <option value="Rabat">Rabat</option>
-                        <option value="Marrakech">Marrakech</option>
-                        <option value="Casa">Casa</option>
-                        <option value="Fes">Fes</option>
-                        <option value="Tanger">Tanger</option>
-                        <option value="Agadir">Agadir</option>
-                        <option value="Nadour">Nadour</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="save-btn">حفظ التغييرات</button>
-                    <button type="button" class="cancel-btn" id="closeEditProfileModal">إلغاء</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Login Page -->
     <div id="loginPage" class="page active">
         <div class="login-container">
             <div class="login-content">
-                <h1 id="loginTitle">TELC B2 Training - نظام المصادقة</h1>
-                <p class="login-subtitle" id="loginSubtitle">سجّل دخولك للبدء في التدريب أو جرّب كضيف</p>
+                <h1>TELC B2 Training - نظام المصادقة</h1>
+                <p class="login-subtitle">سجّل دخولك للبدء في التدريب أو جرّب كضيف</p>
                 
-                <!-- Login Form -->
-                <form class="login-form" id="loginForm">
+                <div class="login-form" id="loginForm">
                     <input type="email" class="form-input" id="emailInput" placeholder="البريد الإلكتروني">
                     <input type="password" class="form-input" id="passwordInput" placeholder="كلمة المرور">
-                    <button type="button" class="auth-btn login-btn" id="loginButton">
+                    <button class="auth-btn login-btn" id="loginButton">
                         <i class="fas fa-sign-in-alt"></i>
-                        <span id="loginBtnText">تسجيل الدخول</span>
+                        <span>تسجيل الدخول</span>
                     </button>
-                    <div class="forgot-password">
-                        <a class="forgot-password-link" id="showForgotPassword">نسيت كلمة المرور؟</a>
-                    </div>
-                </form>
+                </div>
 
-                <!-- Register Form -->
-                <form class="register-form" id="registerForm">
-                    <input type="text" class="form-input" id="fullNameInput" placeholder="الاسم الكامل" required>
-                    <input type="email" class="form-input" id="registerEmailInput" placeholder="البريد الإلكتروني" required>
-                    <input type="password" class="form-input" id="registerPasswordInput" placeholder="كلمة المرور" required>
-                    <input type="password" class="form-input" id="confirmPasswordInput" placeholder="تأكيد كلمة المرور" required>
-                    <button type="button" class="auth-btn signup-btn" id="registerButton">
+                <div class="signup-form" id="signupForm">
+                    <input type="text" class="form-input" id="fullNameInput" placeholder="الاسم الكامل">
+                    <input type="email" class="form-input" id="signupEmailInput" placeholder="البريد الإلكتروني">
+                    <input type="password" class="form-input" id="signupPasswordInput" placeholder="كلمة المرور">
+                    <input type="password" class="form-input" id="confirmPasswordInput" placeholder="تأكيد كلمة المرور">
+                    <button class="auth-btn signup-btn" id="confirmSignupButton">
                         <i class="fas fa-user-plus"></i>
-                        <span id="signupBtnText">إنشاء حساب جديد</span>
+                        <span>إنشاء الحساب</span>
                     </button>
-                </form>
+                </div>
 
                 <div class="auth-buttons">
-                    <button class="auth-btn signup-btn" id="showRegisterFormBtn">
+                    <button class="auth-btn signup-btn" id="signupButton">
                         <i class="fas fa-user-plus"></i>
-                        <span id="signupBtnText">إنشاء حساب جديد</span>
+                        <span>إنشاء حساب جديد</span>
                     </button>
                     <button class="auth-btn guest-btn" id="guestButton">
                         <i class="fas fa-user"></i>
-                        <span id="guestBtnText">الدخول كضيف</span>
+                        <span>الدخول كضيف</span>
                     </button>
                 </div>
 
@@ -1762,25 +751,25 @@
     <div id="menuPage" class="page">
         <div class="menu-container">
             <div class="header">
-                <h1 id="menuTitle">TELC B2 Training Portal</h1>
-                <p class="page-subtitle" id="menuSubtitle">اختر مجال تعلمك وابدأ التحضير للاختبار</p>
+                <h1>TELC B2 Training Portal</h1>
+                <p class="page-subtitle">اختر مجال تعلمك وابدأ التحضير للاختبار</p>
                 <button class="back-btn" id="backToLogin">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span id="backToLoginText">تسجيل الخروج</span>
+                    <span>تسجيل الخروج</span>
                 </button>
             </div>
             
             <div class="menu-grid">
                 <div class="menu-card" id="kursCard">
                     <div class="menu-card-icon">📘</div>
-                    <h2 id="kursTitle">KURS</h2>
-                    <p id="kursDescription">الدروس التفاعلية والتدريبات المصنفة حسب المستوى</p>
+                    <h2>KURS</h2>
+                    <p>الدروس التفاعلية والتدريبات المصنفة حسب المستوى</p>
                 </div>
                 
                 <div class="menu-card" id="examsCard">
                     <div class="menu-card-icon">📚</div>
-                    <h2 id="examsTitle">Prüfungen</h2>
-                    <p id="examsDescription">اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة</p>
+                    <h2>Prüfungen</h2>
+                    <p>اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة</p>
                 </div>
             </div>
         </div>
@@ -1791,357 +780,69 @@
         <div class="exams-container">
             <button class="back-btn" id="backFromKurs">
                 <i class="fas fa-arrow-right"></i>
-                <span id="backKursText">العودة إلى القائمة الرئيسية</span>
+                <span>العودة إلى القائمة الرئيسية</span>
             </button>
             <div class="header">
-                <h1 id="kursPageTitle">KURS - الدروس</h1>
-                <p class="page-subtitle" id="kursPageSubtitle">اختر نوع التدريب الذي ترغب في البدء به</p>
+                <h1>KURS - الدروس</h1>
+                <p class="page-subtitle">اختر نوع التدريب الذي ترغب في البدء به</p>
             </div>
             
             <div class="kurs-submenu active">
                 <div class="kurs-card" id="lesenCard">
                     <div class="menu-card-icon">📖</div>
-                    <h3 id="lesenTitle">Lesen</h3>
-                    <p id="lesenDescription">تدريبات القراءة والفهم النصي</p>
+                    <h3>Lesen</h3>
+                    <p>تدريبات القراءة والفهم النصي</p>
                 </div>
                 
                 <div class="kurs-card" id="hoerenCard">
                     <div class="menu-card-icon">👂</div>
-                    <h3 id="hoerenTitle">Hören</h3>
-                    <p id="hoerenDescription">تدريبات الاستماع والفهم السمعي</p>
+                    <h3>Hören</h3>
+                    <p>تدريبات الاستماع والفهم السمعي</p>
                 </div>
                 
                 <div class="kurs-card" id="schreibenCard">
                     <div class="menu-card-icon">✍️</div>
-                    <h3 id="schreibenTitle">Schreiben</h3>
-                    <p id="schreibenDescription">تدريبات الكتابة والتعبير الكتابي</p>
+                    <h3>Schreiben</h3>
+                    <p>تدريبات الكتابة والتعبير الكتابي</p>
                 </div>
-
+                
                 <div class="kurs-card" id="pdfsCard">
                     <div class="menu-card-icon">📄</div>
-                    <h3 id="pdfsTitle">PDFs</h3>
-                    <p id="pdfsDescription">الملفات الأصلية للدروس والمواد التعليمية</p>
+                    <h3>PDFs</h3>
+                    <p>المواد الدراسية بصيغة PDF للتحميل</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Lesen Exams Page -->
-    <div id="lesenPage" class="page">
-        <div class="exams-container">
-            <button class="back-to-kurs" id="backFromLesen">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backLesenText">العودة إلى KURS</span>
-            </button>
-            <div class="header">
-                <h1 id="lesenPageTitle">Lesen - القراءة</h1>
-                <p class="page-subtitle" id="lesenPageSubtitle">اختر تمرين القراءة الذي ترغب في البدء به</p>
-            </div>
-            
-            <div class="exams-grid" id="lesenGrid">
-                <!-- Lesen exams will be dynamically added here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Hören Exams Page -->
-    <div id="hoerenPage" class="page">
-        <div class="exams-container">
-            <button class="back-to-kurs" id="backFromHoeren">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backHoerenText">العودة إلى KURS</span>
-            </button>
-            <div class="header">
-                <h1 id="hoerenPageTitle">Hören - الاستماع</h1>
-                <p class="page-subtitle" id="hoerenPageSubtitle">اختر تمرين الاستماع الذي ترغب في البدء به</p>
-            </div>
-            
-            <div class="exams-grid" id="hoerenGrid">
-                <!-- Hören exams will be dynamically added here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Schreiben Exams Page -->
-    <div id="schreibenPage" class="page">
-        <div class="exams-container">
-            <button class="back-to-kurs" id="backFromSchreiben">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backSchreibenText">العودة إلى KURS</span>
-            </button>
-            <div class="header">
-                <h1 id="schreibenPageTitle">Schreiben - الكتابة</h1>
-                <p class="page-subtitle" id="schreibenPageSubtitle">اختر تمرين الكتابة الذي ترغب في البدء به</p>
-            </div>
-            
-            <div class="exams-grid" id="schreibenGrid">
-                <!-- Schreiben exams will be dynamically here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- PDFs Page -->
-    <div id="pdfsPage" class="page">
-        <div class="exams-container">
-            <button class="back-to-kurs" id="backFromPdfs">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backPdfsText">العودة إلى KURS</span>
-            </button>
-            <div class="header">
-                <h1 id="pdfsPageTitle">PDFs - الملفات الأصلية</h1>
-                <p class="page-subtitle" id="pdfsPageSubtitle">اختر الملف الذي ترغب في تصفحه</p>
-            </div>
-            
-            <div class="exams-grid" id="pdfsGrid">
-                <!-- PDFs will be dynamically added here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Exams Page -->
-    <div id="examsPage" class="page">
-        <div class="exams-container">
-            <button class="back-btn" id="backFromExams">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backExamsText">العودة إلى القائمة الرئيسية</span>
-            </button>
-            <div class="header">
-                <h1 id="examsPageTitle">Prüfungen - الامتحانات</h1>
-                <p class="page-subtitle" id="examsPageSubtitle">اختر الامتحان الذي ترغب في التدرب عليه</p>
-            </div>
-            
-            <div class="exams-grid" id="examsGrid">
-                <!-- Exams will be dynamically added here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Profile Page -->
-    <div id="profilePage" class="page">
-        <div class="profile-container">
-            <button class="back-btn" id="backFromProfile">
-                <i class="fas fa-arrow-right"></i>
-                <span id="backProfileText">العودة إلى القائمة الرئيسية</span>
-            </button>
-            <div class="header">
-                <h1 id="profileTitle">ملفي الشخصي</h1>
-                <p class="page-subtitle" id="profileSubtitle">إدارة بياناتك الشخصية وتتبع تقدمك التعليمي</p>
-            </div>
-            
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-avatar-container">
-                        <div class="profile-avatar" id="userAvatar">ز</div>
-                    </div>
-                    <h2 id="userName">زكرياء</h2>
-                    <p id="userLevel">طالب مستوى B2</p>
+    <!-- Waiting Approval Page -->
+    <div id="waitingPage" class="page">
+        <div class="waiting-container">
+            <div class="waiting-content">
+                <h1>بانتظار الموافقة</h1>
+                <p>تم استلام طلب تسجيلك بنجاح! جاري مراجعته من قبل المسؤول</p>
+                <div class="waiting-icon">
+                    <i class="fas fa-clock fa-4x"></i>
                 </div>
-
-                <div class="image-upload-container">
-                    <label for="imageUpload" class="image-upload-label">
-                        <i class="fas fa-camera"></i> اختيار صورة
-                    </label>
-                    <input type="file" id="imageUpload" class="image-upload-input" accept="image/*">
-                </div>
-                
-                <div class="profile-info-grid">
-                    <div class="info-section">
-                        <h3 id="personalInfoTitle">المعلومات الشخصية</h3>
-                        <div class="info-item">
-                            <span class="info-label" id="nameLabel">الاسم:</span>
-                            <span class="info-value" id="profileName">زكرياء</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="emailLabel">البريد الإلكتروني:</span>
-                            <span class="info-value" id="profileEmail">zakariaap.6@gmail.com</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="phoneLabel">الهاتف:</span>
-                            <span class="info-value" id="profilePhone">+212 649-661976</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="locationLabel">المكان:</span>
-                            <span class="info-value" id="profileLocation">المغرب</span>
-                        </div>
-                    </div>
-                    
-                    <div class="info-section">
-                        <h3 id="examInfoTitle">معلومات الامتحان</h3>
-                        <div class="info-item">
-                            <span class="info-label" id="examDateLabel">تاريخ الامتحان:</span>
-                            <span class="info-value" id="profileExamDate">01/12/2025</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="examLocationLabel">مكان الامتحان:</span>
-                            <span class="info-value" id="profileExamLocation">برلين</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="levelLabel">المستوى:</span>
-                            <span class="info-value" id="profileLevel">B2</span>
-                        </div>
-                    </div>
-                    
-                    <div class="info-section">
-                        <h3 id="statsTitle">الإحصائيات</h3>
-                        <div class="info-item">
-                            <span class="info-label" id="pointsLabel">النقاط:</span>
-                            <span class="info-value" id="profilePoints">150</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="completedLabel">الامتحانات المكتملة:</span>
-                            <span class="info-value" id="profileCompleted">8/20</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label" id="progressLabel">مستوى التقدم:</span>
-                            <span class="info-value" id="profileProgress">65%</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="countdown-section">
-                    <div class="countdown-title" id="examCountdownTitle">الوقت المتبقي حتى الامتحان:</div>
-                    <div class="countdown-timer" id="examCountdown">30 يوم 00:00:00</div>
-                </div>
-                
-                <div class="progress-section">
-                    <h3 id="learningProgressTitle">تقدم التعلم</h3>
-                    <div>
-                        <span>القراءة (Lesen):</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="--target-width: 70%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <span>الاستماع (Hören):</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="--target-width: 80%"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <span>الكتابة (Schreiben):</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="--target-width: 65%"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="edit-btn" id="editProfileBtn">
-                    <i class="fas fa-edit"></i>
-                    <span id="editProfileText">تعديل الملف الشخصي</span>
+                <p>سيتم إعلامك عبر البريد الإلكتروني عند الموافقة على طلبك</p>
+                <button class="auth-btn login-btn" id="signOutWaiting">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>تسجيل الخروج</span>
                 </button>
-
-                <div class="delete-account-container">
-                    <button class="delete-account-btn" id="deleteAccountBtn">
-                        <i class="fas fa-trash-alt"></i>
-                        <span>حذف الحساب من هذا الجهاز</span>
-                    </button>
-                </div>
             </div>
         </div>
     </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script type="module">
-        // تكوين Supabase - استخدم المفاتيح الجديدة
-        const SUPABASE_URL = 'https://detxeuuwakkeofhsqpgs.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRldHhldXV3YWtrZW9maHNxcGdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0MDk0NzIsImV4cCI6MjA3NTk4NTQ3Mn0.m4R4I6q74GGODhDwEKfV_S9jmawzqZC0FsXrEJ8_FVs';
+        // تكوين Supabase الجديد
+        const SUPABASE_URL = 'https://gxliuuhgssesdrbwgdui.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4bGl1dWhnc3Nlc2RyYndnZHVpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NTQyNTIsImV4cCI6MjA3NjAzMDI1Mn0.gPVliO_yB__XqGBdWHCpr1FdbOtKuQ-1XDA-JoclZNU';
         
         // تهيئة Supabase
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // قوائم الامتحانات والدروس
-        const themaKompliExams = [
-            "ALBI2A.html", "ALPEN.html", "BATATA.html", "BILDER.html", "BINZIL.html",
-            "GRUND SCHULE.html", "HACHARAT.html", "KELLNER.html", "L9AHWA.html", "LHALWA.html",
-            "LI9A7.html", "LICHT.html", "LIMON.html", "MOBARMIJIN.html", "NA7L.html",
-            "NAMSA.html", "SCHLAFZUG.html", "SPORT IST GESUND.html", "TANZKURZ.html", "TRANPOLIN.html"
-        ];
-
-        const lesenExams = [
-            "AL3AB.html", "ALBI2A.html", "ALPEN.html", "BATATA.html", "BENZIL.html",
-            "BILDER.html", "GELD.html", "GRUNDSCHULE.html", "HACHARAT.html", "HATIF L2ATFAL.html",
-            "INSEL.html", "INTIKHABAT.html", "KELLNER.html", "L7ALWA.html", "L9AHWA.html",
-            "LI9A7.html", "LICHT.html", "LIMON.html", "MOBARMIJIN.html", "MOKHADIRAT.html",
-            "NA7L.html", "NAMSA.html", "SCHLAFZUG.html", "SPORT IST GESUND.html", "TANZKURS.html", "TRAMPOLIN.html"
-        ];
-
-        const hoerenExams = ["hören.html", "hören (1).html"];
-        const schreibenExams = ["Schreiben.html"];
-        const pdfsFiles = [
-            "ALBI2A.pdf", "AL3AB.pdf", "ALPEN.pdf", "BATATA.pdf", "BENZIL.pdf",
-            "BILDER.pdf", "GELD.pdf", "GRUNDSCHULE.pdf", "HACHARAT.pdf", "HATIF L2ATFAL.pdf",
-            "INSEL.pdf", "INTIKHABAT.pdf", "KELLNER.pdf", "L7ALWA.pdf", "L9AHWA.pdf",
-            "LI9A7.pdf", "LICHT.pdf", "LIMON.pdf", "MOBARMIJIN.pdf", "MOKHADIRAT.pdf",
-            "NA7L.pdf", "NAMSA.pdf", "SCHLAFZUG.pdf", "SPORT IST GESUND.pdf", "TANZKURZ.pdf", "TRAMPOLINE.pdf",
-            "hören.pdf", "hören (1).pdf", "Schreiben.pdf"
-        ];
-
-        // الترجمات
-        const translations = {
-            ar: {
-                loginTitle: "TELC B2 Training - نظام المصادقة",
-                loginSubtitle: "سجّل دخولك للبدء في التدريب أو جرّب كضيف",
-                loginBtnText: "تسجيل الدخول",
-                signupBtnText: "إنشاء حساب جديد",
-                guestBtnText: "الدخول كضيف",
-                menuTitle: "TELC B2 Training Portal",
-                menuSubtitle: "اختر مجال تعلمك وابدأ التحضير للاختبار",
-                kursTitle: "KURS",
-                kursDescription: "الدروس التفاعلية والتدريبات المصنفة حسب المستوى",
-                examsTitle: "Prüfungen",
-                examsDescription: "اختبر معرفتك مع تحضيراتنا الشاملة للامتحانات والمحاكاة",
-                backToLoginText: "تسجيل الخروج",
-                backKursText: "العودة إلى القائمة الرئيسية",
-                kursPageTitle: "KURS - الدروس",
-                kursPageSubtitle: "اختر نوع التدريب الذي ترغب في البدء به",
-                lesenTitle: "Lesen",
-                lesenDescription: "تدريبات القراءة والفهم النصي",
-                hoerenTitle: "Hören",
-                hoerenDescription: "تدريبات الاستماع والفهم السمعي",
-                schreibenTitle: "Schreiben",
-                schreibenDescription: "تدريبات الكتابة والتعبير الكتابي",
-                pdfsTitle: "PDFs",
-                pdfsDescription: "الملفات الأصلية للدروس والمواد التعليمية",
-                backLesenText: "العودة إلى KURS",
-                lesenPageTitle: "Lesen - القراءة",
-                lesenPageSubtitle: "اختر تمرين القراءة الذي ترغب في البدء به",
-                backHoerenText: "العودة إلى KURS",
-                hoerenPageTitle: "Hören - الاستماع",
-                hoerenPageSubtitle: "اختر تمرين الاستماع الذي ترغب في البدء به",
-                backSchreibenText: "العودة إلى KURS",
-                schreibenPageTitle: "Schreiben - الكتابة",
-                schreibenPageSubtitle: "اختر تمرين الكتابة الذي ترغب في البدء به",
-                backPdfsText: "العودة إلى KURS",
-                pdfsPageTitle: "PDFs - الملفات الأصلية",
-                pdfsPageSubtitle: "اختر الملف الذي ترغب في تصفحه",
-                backExamsText: "العودة إلى القائمة الرئيسية",
-                examsPageTitle: "Prüfungen - الامتحانات",
-                examsPageSubtitle: "اختر الامتحان الذي ترغب في التدرب عليه",
-                backProfileText: "العودة إلى القائمة الرئيسية",
-                profileTitle: "ملفي الشخصي",
-                profileSubtitle: "إدارة بياناتك الشخصية وتتبع تقدمك التعليمي",
-                personalInfoTitle: "المعلومات الشخصية",
-                nameLabel: "الاسم:",
-                emailLabel: "البريد الإلكتروني:",
-                phoneLabel: "الهاتف:",
-                locationLabel: "المكان:",
-                examInfoTitle: "معلومات الامتحان",
-                examDateLabel: "تاريخ الامتحان:",
-                examLocationLabel: "مكان الامتحان:",
-                levelLabel: "المستوى:",
-                statsTitle: "الإحصائيات",
-                pointsLabel: "النقاط:",
-                completedLabel: "الامتحانات المكتملة:",
-                progressLabel: "مستوى التقدم:",
-                examCountdownTitle: "الوقت المتبقي حتى الامتحان:",
-                learningProgressTitle: "تقدم التعلم",
-                editProfileText: "تعديل الملف الشخصي",
-                supportTitle: "اتصال الدعم",
-                supportText: "للأسئلة أو المشاكل أو لشراء النسخة الكاملة يرجى الاتصال بـ:",
-                phoneModalTitle: "تفعيل الاشتراك",
-                phoneModalText: "لتفعيل الاشتراك يرجى التواصل على الرقم التالي:",
-                trialBannerText: "النسخة التجريبية - متبقي:"
-            }
-        };
 
         // تهيئة التطبيق
         document.addEventListener('DOMContentLoaded', function() {
@@ -2150,93 +851,43 @@
                 login: document.getElementById('loginPage'),
                 menu: document.getElementById('menuPage'),
                 kurs: document.getElementById('kursPage'),
-                lesen: document.getElementById('lesenPage'),
-                hoeren: document.getElementById('hoerenPage'),
-                schreiben: document.getElementById('schreibenPage'),
-                pdfs: document.getElementById('pdfsPage'),
-                exams: document.getElementById('examsPage'),
-                profile: document.getElementById('profilePage')
+                waiting: document.getElementById('waitingPage')
             };
-
-            // أزرار التنقل
-            const backToLogin = document.getElementById('backToLogin');
-            const backFromKurs = document.getElementById('backFromKurs');
-            const backFromLesen = document.getElementById('backFromLesen');
-            const backFromHoeren = document.getElementById('backFromHoeren');
-            const backFromSchreiben = document.getElementById('backFromSchreiben');
-            const backFromPdfs = document.getElementById('backFromPdfs');
-            const backFromExams = document.getElementById('backFromExams');
-            const backFromProfile = document.getElementById('backFromProfile');
-
-            // أزرار القائمة
-            const kursCard = document.getElementById('kursCard');
-            const examsCard = document.getElementById('examsCard');
-            const lesenCard = document.getElementById('lesenCard');
-            const hoerenCard = document.getElementById('hoerenCard');
-            const schreibenCard = document.getElementById('schreibenCard');
-            const pdfsCard = document.getElementById('pdfsCard');
 
             // عناصر تسجيل الدخول
             const emailInput = document.getElementById('emailInput');
             const passwordInput = document.getElementById('passwordInput');
             const loginButton = document.getElementById('loginButton');
-            const showRegisterFormBtn = document.getElementById('showRegisterFormBtn');
-            const registerButton = document.getElementById('registerButton');
+            const signupButton = document.getElementById('signupButton');
             const guestButton = document.getElementById('guestButton');
-            const showForgotPassword = document.getElementById('showForgotPassword');
+            const confirmSignupButton = document.getElementById('confirmSignupButton');
             const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
+            const signupForm = document.getElementById('signupForm');
+
+            // عناصر التسجيل
             const fullNameInput = document.getElementById('fullNameInput');
-            const registerEmailInput = document.getElementById('registerEmailInput');
-            const registerPasswordInput = document.getElementById('registerPasswordInput');
+            const signupEmailInput = document.getElementById('signupEmailInput');
+            const signupPasswordInput = document.getElementById('signupPasswordInput');
             const confirmPasswordInput = document.getElementById('confirmPasswordInput');
 
             // عناصر التحكم
-            const themeToggle = document.getElementById('themeToggle');
-            const supportBtn = document.getElementById('supportBtn');
-            const profileBtn = document.getElementById('profileBtn');
-            const notesBtn = document.getElementById('notesBtn');
+            const backToLogin = document.getElementById('backToLogin');
+            const signOutWaiting = document.getElementById('signOutWaiting');
 
-            // النماذج المنبثقة
-            const phoneModal = document.getElementById('phoneModal');
-            const supportModal = document.getElementById('supportModal');
-            const forgotPasswordModal = document.getElementById('forgotPasswordModal');
-            const editProfileModal = document.getElementById('editProfileModal');
-            const closePhoneModal = document.getElementById('closePhoneModal');
-            const closeSupportModal = document.getElementById('closeSupportModal');
-            const closeForgotPasswordModal = document.getElementById('closeForgotPasswordModal');
-            const closeEditProfileModal = document.getElementById('closeEditProfileModal');
-            const subscriptionActivation = document.getElementById('subscriptionActivation');
-            const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-            const editProfileForm = document.getElementById('editProfileForm');
-
-            // محدد اللغة
-            const langBtn = document.getElementById('langBtn');
-            const langDropdown = document.getElementById('langDropdown');
-
-            // العداد والشارات
-            const trialBanner = document.getElementById('trialBanner');
-            const trialTimer = document.getElementById('trialTimer');
-            const premiumBadge = document.getElementById('premiumBadge');
-
-            // الملف الشخصي
-            const editProfileBtn = document.getElementById('editProfileBtn');
-            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
-            const imageUpload = document.getElementById('imageUpload');
+            // Toast container
+            const toastContainer = document.getElementById('toastContainer');
 
             // المتغيرات العامة
             let currentUser = null;
-            let currentLanguage = 'ar';
-            let trialExpiry = null;
-            let examCountdownInterval = null;
-            
-            // وظائف المصادقة
+            let isGuest = false;
+
+            // وظائف المصادقة - الإصدار المصحح تماماً
             async function handleLogin() {
                 const email = emailInput.value.trim();
                 const password = passwordInput.value;
                 
                 if (!email || !password) {
-                    showMessage('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
+                    showToast('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
                     return;
                 }
                 
@@ -2249,38 +900,40 @@
                     if (error) throw error;
 
                     currentUser = data.user;
+                    showToast('تم تسجيل الدخول بنجاح!', 'success');
                     
-                    // بدء فترة التجربة 24 ساعة
-                    startTrialPeriod();
-                    
-                    showMessage('تم تسجيل الدخول بنجاح!', 'success');
-                    showPage('menu');
-                    updateUIForLoggedInUser();
+                    // التحقق من صلاحية المستخدم مباشرة
+                    const hasAccess = await checkUserAccess();
+                    if (hasAccess) {
+                        showPage('menu');
+                    } else {
+                        showPage('waiting');
+                    }
                     
                 } catch (error) {
                     console.error('Login error:', error);
-                    showMessage('خطأ في تسجيل الدخول: ' + error.message, 'error');
+                    showToast('خطأ في تسجيل الدخول: ' + error.message, 'error');
                 }
             }
 
-            async function handleRegister() {
+            async function handleSignUp() {
                 const fullName = fullNameInput.value.trim();
-                const email = registerEmailInput.value.trim();
-                const password = registerPasswordInput.value;
+                const email = signupEmailInput.value.trim();
+                const password = signupPasswordInput.value;
                 const confirmPassword = confirmPasswordInput.value;
                 
                 if (!fullName || !email || !password || !confirmPassword) {
-                    showMessage('يرجى ملء جميع الحقول', 'error');
+                    showToast('يرجى ملء جميع الحقول', 'error');
                     return;
                 }
                 
                 if (password !== confirmPassword) {
-                    showMessage('كلمة المرور وتأكيد كلمة المرور غير متطابقتين', 'error');
+                    showToast('كلمات المرور غير متطابقة', 'error');
                     return;
                 }
                 
                 if (password.length < 6) {
-                    showMessage('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                    showToast('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
                     return;
                 }
                 
@@ -2290,73 +943,24 @@
                         password,
                         options: {
                             data: {
-                                full_name: fullName,
-                                status: 'pending'
+                                full_name: fullName
                             }
                         }
                     });
 
                     if (error) throw error;
 
-                    // إنشاء ملف تعريف المستخدم
-                    await createUserProfile(data.user.id, fullName, email);
+                    showToast('تم إنشاء الحساب بنجاح! جاري انتظار موافقة المسؤول', 'success');
+                    showPage('waiting');
                     
-                    showMessage('تم إنشاء الحساب بنجاح! حسابك قيد المراجعة والموافقة. سيتم إعلامك عبر البريد الإلكتروني عند تفعيل الحساب.', 'success');
-                    
-                    // العودة إلى نموذج تسجيل الدخول
-                    showLoginForm();
-                    
-                } catch (error) {
-                    showMessage('خطأ في إنشاء الحساب: ' + error.message, 'error');
-                }
-            }
-
-            async function createUserProfile(userId, fullName, email) {
-                try {
-                    const { error } = await supabase
-                        .from('profiles')
-                        .insert([
-                            {
-                                user_id: userId,
-                                full_name: fullName,
-                                email: email,
-                                status: 'pending',
-                                trial_start: new Date().toISOString(),
-                                trial_end: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-                                exam_city: '',
-                                exam_date: '',
-                                created_at: new Date().toISOString()
-                            }
-                        ]);
-
-                    if (error) throw error;
-                } catch (error) {
-                    console.error('Error creating user profile:', error);
-                }
-            }
-
-            async function handleForgotPassword(e) {
-                e.preventDefault();
-                const email = document.getElementById('resetEmail').value;
-                
-                if (!email) {
-                    showMessage('يرجى إدخال البريد الإلكتروني', 'error');
-                    return;
-                }
-                
-                try {
-                    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                        redirectTo: window.location.origin + '/reset-password.html',
-                    });
-
-                    if (error) throw error;
-
-                    showMessage('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني. الرابط صالح لمدة 15 دقيقة.', 'success');
-                    forgotPasswordModal.style.display = 'none';
-                    forgotPasswordForm.reset();
+                    // تنظيف الحقول
+                    fullNameInput.value = '';
+                    signupEmailInput.value = '';
+                    signupPasswordInput.value = '';
+                    confirmPasswordInput.value = '';
                     
                 } catch (error) {
-                    showMessage('خطأ في إرسال رابط الاستعادة: ' + error.message, 'error');
+                    showToast('خطأ في إنشاء الحساب: ' + error.message, 'error');
                 }
             }
 
@@ -2366,57 +970,46 @@
                     if (error) throw error;
                     
                     currentUser = null;
-                    trialExpiry = null;
-                    localStorage.removeItem('trialExpiry');
-                    updateUIForLoggedOutUser();
+                    isGuest = false;
                     showPage('login');
-                    
-                    showMessage('تم تسجيل الخروج بنجاح', 'success');
+                    showToast('تم تسجيل الخروج بنجاح', 'success');
                     
                 } catch (error) {
                     console.error('Sign out error:', error);
-                    showMessage('خطأ في تسجيل الخروج', 'error');
+                    showToast('خطأ في تسجيل الخروج', 'error');
                 }
             }
 
             function handleGuestLogin() {
-                showMessage('الوضع الضيف محدود الوصول. يرجى التسجيل للوصول الكامل.', 'info');
-                
+                showToast('الوضع الضيف محدود الوصول. يرجى التسجيل للوصول الكامل.', 'info');
                 currentUser = { guest: true };
-                startTrialPeriod();
-                updateUIForGuestUser();
+                isGuest = true;
                 showPage('menu');
             }
 
-            function startTrialPeriod() {
-                // بدء فترة التجربة 24 ساعة
-                trialExpiry = new Date();
-                trialExpiry.setHours(trialExpiry.getHours() + 24);
-                localStorage.setItem('trialExpiry', trialExpiry.toISOString());
+            // وظيفة التحقق من صلاحية المستخدم - الإصدار المصحح تماماً
+            async function checkUserAccess() {
+                if (!currentUser) return false;
                 
-                // بدء العد التنازلي
-                startTrialCountdown();
-                trialBanner.style.display = 'block';
-            }
+                try {
+                    // التحقق مباشرة من جدول user_permissions
+                    const { data, error } = await supabase
+                        .from('user_permissions')
+                        .select('can_access')
+                        .eq('user_id', currentUser.id)
+                        .single();
 
-            function updateUIForLoggedInUser() {
-                profileBtn.style.display = 'flex';
-                notesBtn.style.display = 'flex';
-                premiumBadge.style.display = 'flex';
-            }
+                    if (error) {
+                        console.log('User permissions not found, waiting for approval');
+                        return false;
+                    }
 
-            function updateUIForLoggedOutUser() {
-                profileBtn.style.display = 'none';
-                notesBtn.style.display = 'none';
-                premiumBadge.style.display = 'none';
-                trialBanner.style.display = 'none';
-            }
+                    return data && data.can_access;
 
-            function updateUIForGuestUser() {
-                profileBtn.style.display = 'none';
-                notesBtn.style.display = 'none';
-                premiumBadge.style.display = 'none';
-                trialBanner.style.display = 'block';
+                } catch (error) {
+                    console.error('Error checking user access:', error);
+                    return false;
+                }
             }
 
             // وظائف التنقل
@@ -2428,540 +1021,29 @@
                 if (pages[pageName]) {
                     pages[pageName].classList.add('active');
                 }
+            }
+
+            // عرض Toast
+            function showToast(message, type = 'info') {
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
                 
-                if (pageName === 'exams') {
-                    populateExamsGrid();
-                } else if (pageName === 'lesen') {
-                    populateLesenGrid();
-                } else if (pageName === 'hoeren') {
-                    populateHoerenGrid();
-                } else if (pageName === 'schreiben') {
-                    populateSchreibenGrid();
-                } else if (pageName === 'pdfs') {
-                    populatePdfsGrid();
-                } else if (pageName === 'profile') {
-                    updateProfileDisplay();
-                }
-                
-                updateTexts();
-            }
-
-            function showLoginForm() {
-                loginForm.style.display = 'flex';
-                registerForm.style.display = 'none';
-                document.querySelector('.auth-buttons').style.display = 'flex';
-            }
-
-            function showRegisterForm() {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'flex';
-                document.querySelector('.auth-buttons').style.display = 'none';
-            }
-
-            // إضافة الامتحانات إلى الشبكات
-            function populateExamsGrid() {
-                const examsGrid = document.getElementById('examsGrid');
-                examsGrid.innerHTML = '';
-                
-                themaKompliExams.forEach((exam, index) => {
-                    const examName = exam.replace('.html', '');
-                    const examCard = document.createElement('div');
-                    examCard.className = 'exam-card';
-                    examCard.style.animationDelay = `${index * 0.1}s`;
-                    examCard.innerHTML = `
-                        <h3>${examName}</h3>
-                        <p>${currentLanguage === 'ar' ? 'تحضير الامتحان' : 'Exam Preparation'}</p>
-                    `;
-                    examCard.addEventListener('click', () => {
-                        if (isTrialExpired()) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            return;
-                        }
-                        // الانتقال إلى ملف الامتحان
-                        window.location.href = `THEMA KOMPLI/${exam}`;
-                    });
-                    examsGrid.appendChild(examCard);
-                });
-            }
-
-            function populateLesenGrid() {
-                const lesenGrid = document.getElementById('lesenGrid');
-                lesenGrid.innerHTML = '';
-                
-                lesenExams.forEach((exam, index) => {
-                    const examName = exam.replace('.html', '');
-                    const examCard = document.createElement('div');
-                    examCard.className = 'exam-card';
-                    examCard.style.animationDelay = `${index * 0.1}s`;
-                    examCard.innerHTML = `
-                        <h3>${examName}</h3>
-                        <p>${currentLanguage === 'ar' ? 'تمرين القراءة' : 'Reading Exercise'}</p>
-                    `;
-                    examCard.addEventListener('click', () => {
-                        if (isTrialExpired()) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            return;
-                        }
-                        // الانتقال إلى ملف القراءة
-                        window.location.href = `KURS/LESEN/${exam}`;
-                    });
-                    lesenGrid.appendChild(examCard);
-                });
-            }
-
-            function populateHoerenGrid() {
-                const hoerenGrid = document.getElementById('hoerenGrid');
-                hoerenGrid.innerHTML = '';
-                
-                hoerenExams.forEach((exam, index) => {
-                    const examName = exam.replace('.html', '');
-                    const examCard = document.createElement('div');
-                    examCard.className = 'exam-card';
-                    examCard.style.animationDelay = `${index * 0.1}s`;
-                    examCard.innerHTML = `
-                        <h3>${examName}</h3>
-                        <p>${currentLanguage === 'ar' ? 'تمرين الاستماع' : 'Listening Exercise'}</p>
-                    `;
-                    examCard.addEventListener('click', () => {
-                        if (isTrialExpired()) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            return;
-                        }
-                        // الانتقال إلى ملف الاستماع
-                        window.location.href = `KURS/HÖREN/${exam}`;
-                    });
-                    hoerenGrid.appendChild(examCard);
-                });
-            }
-
-            function populateSchreibenGrid() {
-                const schreibenGrid = document.getElementById('schreibenGrid');
-                schreibenGrid.innerHTML = '';
-                
-                schreibenExams.forEach((exam, index) => {
-                    const examName = exam.replace('.html', '');
-                    const examCard = document.createElement('div');
-                    examCard.className = 'exam-card';
-                    examCard.style.animationDelay = `${index * 0.1}s`;
-                    examCard.innerHTML = `
-                        <h3>${examName}</h3>
-                        <p>${currentLanguage === 'ar' ? 'تمرين الكتابة' : 'Writing Exercise'}</p>
-                    `;
-                    examCard.addEventListener('click', () => {
-                        if (isTrialExpired()) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            return;
-                        }
-                        // الانتقال إلى ملف الكتابة
-                        window.location.href = `KURS/SCHREIBEN/${exam}`;
-                    });
-                    schreibenGrid.appendChild(examCard);
-                });
-            }
-
-            function populatePdfsGrid() {
-                const pdfsGrid = document.getElementById('pdfsGrid');
-                pdfsGrid.innerHTML = '';
-                
-                pdfsFiles.forEach((pdf, index) => {
-                    const pdfName = pdf.replace('.pdf', '');
-                    const pdfCard = document.createElement('div');
-                    pdfCard.className = 'exam-card';
-                    pdfCard.style.animationDelay = `${index * 0.1}s`;
-                    pdfCard.innerHTML = `
-                        <h3>${pdfName}</h3>
-                        <p>${currentLanguage === 'ar' ? 'ملف PDF' : 'PDF File'}</p>
-                    `;
-                    pdfCard.addEventListener('click', () => {
-                        if (isTrialExpired()) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            return;
-                        }
-                        // الانتقال إلى ملف PDF
-                        window.location.href = `pdfs/${pdf}`;
-                    });
-                    pdfsGrid.appendChild(pdfCard);
-                });
-            }
-
-            function isTrialExpired() {
-                if (!trialExpiry) {
-                    const savedTrialExpiry = localStorage.getItem('trialExpiry');
-                    if (savedTrialExpiry) {
-                        trialExpiry = new Date(savedTrialExpiry);
-                    } else {
-                        return true;
-                    }
-                }
-                return new Date() > trialExpiry;
-            }
-
-            // تحديث الملف الشخصي
-            function updateProfileDisplay() {
-                if (currentUser && !currentUser.guest) {
-                    const userName = currentUser.email ? currentUser.email.split('@')[0] : 'مستخدم';
-                    document.getElementById('userName').textContent = userName;
-                    document.getElementById('profileName').textContent = userName;
-                    document.getElementById('profileEmail').textContent = currentUser.email || 'غير متوفر';
-                    
-                    // تحميل بيانات إضافية من localStorage
-                    const savedProfile = localStorage.getItem('userProfile');
-                    if (savedProfile) {
-                        const profile = JSON.parse(savedProfile);
-                        if (profile.examDate) {
-                            document.getElementById('profileExamDate').textContent = profile.examDate;
-                            startExamCountdown(profile.examDate);
-                        }
-                        if (profile.examCity) {
-                            document.getElementById('profileExamLocation').textContent = profile.examCity;
-                        }
-                    }
-                }
-            }
-
-            function startExamCountdown(examDate) {
-                if (examCountdownInterval) {
-                    clearInterval(examCountdownInterval);
-                }
-                
-                const updateCountdown = () => {
-                    const now = new Date();
-                    const examDateTime = new Date(examDate);
-                    const timeLeft = examDateTime - now;
-                    
-                    if (timeLeft <= 0) {
-                        document.getElementById('examCountdown').textContent = 'انتهى وقت الامتحان';
-                        clearInterval(examCountdownInterval);
-                        return;
-                    }
-                    
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                    document.getElementById('examCountdown').textContent = 
-                        `${days} يوم ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-exclamation-circle',
+                    info: 'fa-info-circle'
                 };
                 
-                updateCountdown();
-                examCountdownInterval = setInterval(updateCountdown, 1000);
-            }
-
-            function startTrialCountdown() {
-                if (!trialExpiry) {
-                    const savedTrialExpiry = localStorage.getItem('trialExpiry');
-                    if (savedTrialExpiry) {
-                        trialExpiry = new Date(savedTrialExpiry);
-                    } else {
-                        return;
-                    }
-                }
+                toast.innerHTML = `
+                    <i class="fas ${icons[type]}"></i>
+                    <span>${message}</span>
+                `;
                 
-                const updateTrialTimer = () => {
-                    const now = new Date();
-                    const timeLeft = trialExpiry - now;
-                    
-                    if (timeLeft <= 0) {
-                        trialTimer.textContent = "00:00:00";
-                        trialBanner.classList.add('expired');
-                        if (currentUser?.guest) {
-                            showMessage('انتهت الفترة التجريبية. يرجى التسجيل للاستمرار.', 'error');
-                            handleSignOut();
-                        }
-                        return;
-                    }
-                    
-                    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                    trialTimer.textContent = 
-                        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                };
-                
-                updateTrialTimer();
-                setInterval(updateTrialTimer, 1000);
-            }
-
-            function handleEditProfile(e) {
-                e.preventDefault();
-                
-                const fullName = document.getElementById('editFullName').value;
-                const email = document.getElementById('editEmail').value;
-                const examDate = document.getElementById('editExamDate').value;
-                const examCity = document.getElementById('editExamCity').value;
-                
-                if (!fullName || !email || !examDate || !examCity) {
-                    showMessage('يرجى ملء جميع الحقول', 'error');
-                    return;
-                }
-                
-                // حفظ البيانات في localStorage
-                const userProfile = {
-                    fullName,
-                    email,
-                    examDate,
-                    examCity
-                };
-                localStorage.setItem('userProfile', JSON.stringify(userProfile));
-                
-                // تحديث العرض
-                document.getElementById('userName').textContent = fullName;
-                document.getElementById('profileName').textContent = fullName;
-                document.getElementById('profileEmail').textContent = email;
-                document.getElementById('profileExamDate').textContent = examDate;
-                document.getElementById('profileExamLocation').textContent = examCity;
-                
-                // بدء العد التنازلي
-                startExamCountdown(examDate);
-                
-                showMessage('تم تحديث الملف الشخصي بنجاح', 'success');
-                editProfileModal.style.display = 'none';
-            }
-
-            function handleDeleteAccount() {
-                if (confirm('هل أنت متأكد أنك تريد حذف الحساب من هذا الجهاز؟ سيتم تسجيل خروجك وإزالة جميع البيانات المحفوظة.')) {
-                    // مسح البيانات المحلية
-                    localStorage.removeItem('currentUser');
-                    localStorage.removeItem('trialExpiry');
-                    localStorage.removeItem('userProfile');
-                    localStorage.removeItem('userAvatar');
-                    
-                    // تسجيل الخروج
-                    handleSignOut();
-                    
-                    showMessage('تم حذف الحساب من هذا الجهاز بنجاح', 'success');
-                }
-            }
-
-            function handleImageUpload(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        document.getElementById('userAvatar').style.backgroundImage = `url(${e.target.result})`;
-                        localStorage.setItem('userAvatar', e.target.result);
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-
-            // تحميل الصورة المحفوظة
-            function loadSavedAvatar() {
-                const savedAvatar = localStorage.getItem('userAvatar');
-                if (savedAvatar) {
-                    document.getElementById('userAvatar').style.backgroundImage = `url(${savedAvatar})`;
-                }
-            }
-
-            // تغيير اللغة
-            function changeLanguage(lang) {
-                currentLanguage = lang;
-                updateTexts();
-                localStorage.setItem('language', lang);
-                
-                const langTexts = {
-                    ar: '🇸🇦 العربية',
-                    de: '🇩🇪 Deutsch', 
-                    en: '🇬🇧 English'
-                };
-                langBtn.innerHTML = `<span>${langTexts[lang]}</span>`;
-                
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-                document.documentElement.lang = lang;
-            }
-
-            // تحديث النصوص حسب اللغة
-            function updateTexts() {
-                const t = translations[currentLanguage];
-                if (!t) return;
-                
-                Object.keys(t).forEach(key => {
-                    const element = document.getElementById(key);
-                    if (element) {
-                        element.textContent = t[key];
-                    }
-                });
-            }
-
-            // عرض الرسائل
-            function showMessage(message, type = 'info') {
-                const existingMessages = document.querySelectorAll('.message');
-                existingMessages.forEach(msg => msg.remove());
-                
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${type}`;
-                messageDiv.textContent = message;
-                
-                document.body.appendChild(messageDiv);
+                toastContainer.appendChild(toast);
                 
                 setTimeout(() => {
-                    if (document.body.contains(messageDiv)) {
-                        document.body.removeChild(messageDiv);
-                    }
+                    toast.remove();
                 }, 5000);
-            }
-
-            // إعداد مستمعي الأحداث
-            function setupEventListeners() {
-                // تسجيل الدخول والتسجيل
-                loginButton.addEventListener('click', handleLogin);
-                showRegisterFormBtn.addEventListener('click', showRegisterForm);
-                registerButton.addEventListener('click', handleRegister);
-                guestButton.addEventListener('click', handleGuestLogin);
-                
-                // التنقل بين الصفحات
-                backToLogin.addEventListener('click', handleSignOut);
-                backFromKurs.addEventListener('click', () => showPage('menu'));
-                backFromLesen.addEventListener('click', () => showPage('kurs'));
-                backFromHoeren.addEventListener('click', () => showPage('kurs'));
-                backFromSchreiben.addEventListener('click', () => showPage('kurs'));
-                backFromPdfs.addEventListener('click', () => showPage('kurs'));
-                backFromExams.addEventListener('click', () => showPage('menu'));
-                backFromProfile.addEventListener('click', () => showPage('menu'));
-                
-                // القائمة الرئيسية
-                kursCard.addEventListener('click', () => showPage('kurs'));
-                examsCard.addEventListener('click', () => showPage('exams'));
-                
-                // القائمة الفرعية لـ KURS
-                lesenCard.addEventListener('click', () => showPage('lesen'));
-                hoerenCard.addEventListener('click', () => showPage('hoeren'));
-                schreibenCard.addEventListener('click', () => showPage('schreiben'));
-                pdfsCard.addEventListener('click', () => showPage('pdfs'));
-                
-                // عناصر التحكم
-                themeToggle.addEventListener('click', () => {
-                    document.body.classList.toggle('dark-mode');
-                    themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-                    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-                });
-                
-                supportBtn.addEventListener('click', () => {
-                    supportModal.style.display = 'flex';
-                });
-                
-                profileBtn.addEventListener('click', () => {
-                    showPage('profile');
-                });
-                
-                notesBtn.addEventListener('click', () => {
-                    showMessage('صفحة الملاحظات قريباً', 'info');
-                });
-                
-                // زر التاج
-                premiumBadge.addEventListener('click', () => {
-                    showMessage('أنت مشترك! شكراً على دعمك 💎', 'info');
-                });
-                
-                // النماذج المنبثقة
-                subscriptionActivation.addEventListener('click', () => {
-                    phoneModal.style.display = 'flex';
-                });
-                
-                closePhoneModal.addEventListener('click', () => {
-                    phoneModal.style.display = 'none';
-                });
-                
-                closeSupportModal.addEventListener('click', () => {
-                    supportModal.style.display = 'none';
-                });
-                
-                // نسيت كلمة المرور
-                showForgotPassword.addEventListener('click', () => {
-                    forgotPasswordModal.style.display = 'flex';
-                });
-                
-                closeForgotPasswordModal.addEventListener('click', () => {
-                    forgotPasswordModal.style.display = 'none';
-                });
-                
-                forgotPasswordForm.addEventListener('submit', handleForgotPassword);
-                
-                // تعديل الملف الشخصي
-                editProfileBtn.addEventListener('click', () => {
-                    // تحميل البيانات الحالية
-                    const savedProfile = localStorage.getItem('userProfile');
-                    if (savedProfile) {
-                        const profile = JSON.parse(savedProfile);
-                        document.getElementById('editFullName').value = profile.fullName || '';
-                        document.getElementById('editEmail').value = profile.email || '';
-                        document.getElementById('editExamDate').value = profile.examDate || '';
-                        document.getElementById('editExamCity').value = profile.examCity || '';
-                    }
-                    editProfileModal.style.display = 'flex';
-                });
-                
-                closeEditProfileModal.addEventListener('click', () => {
-                    editProfileModal.style.display = 'none';
-                });
-                
-                editProfileForm.addEventListener('submit', handleEditProfile);
-                
-                // حذف الحساب
-                deleteAccountBtn.addEventListener('click', handleDeleteAccount);
-                
-                // رفع الصورة
-                imageUpload.addEventListener('change', handleImageUpload);
-                
-                // إغلاق النماذج بالنقر خارجها
-                phoneModal.addEventListener('click', (e) => {
-                    if (e.target === phoneModal) {
-                        phoneModal.style.display = 'none';
-                    }
-                });
-                
-                supportModal.addEventListener('click', (e) => {
-                    if (e.target === supportModal) {
-                        supportModal.style.display = 'none';
-                    }
-                });
-                
-                forgotPasswordModal.addEventListener('click', (e) => {
-                    if (e.target === forgotPasswordModal) {
-                        forgotPasswordModal.style.display = 'none';
-                    }
-                });
-                
-                editProfileModal.addEventListener('click', (e) => {
-                    if (e.target === editProfileModal) {
-                        editProfileModal.style.display = 'none';
-                    }
-                });
-                
-                // محدد اللغة
-                langBtn.addEventListener('click', () => {
-                    langDropdown.classList.toggle('show');
-                });
-                
-                document.querySelectorAll('.lang-option').forEach(option => {
-                    option.addEventListener('click', () => {
-                        const lang = option.getAttribute('data-lang');
-                        changeLanguage(lang);
-                        langDropdown.classList.remove('show');
-                    });
-                });
-                
-                // إغلاق القوائم المنسدلة بالنقر خارجها
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.language-selector')) {
-                        langDropdown.classList.remove('show');
-                    }
-                });
-                
-                // إدخال بالإنتر
-                passwordInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        handleLogin();
-                    }
-                });
-
-                registerPasswordInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        handleRegister();
-                    }
-                });
             }
 
             // التحقق من حالة تسجيل الدخول المحفوظة
@@ -2973,42 +1055,72 @@
                     if (data.session) {
                         currentUser = data.session.user;
                         
-                        // بدء فترة التجربة إذا لم تكن موجودة
-                        const savedTrialExpiry = localStorage.getItem('trialExpiry');
-                        if (savedTrialExpiry) {
-                            trialExpiry = new Date(savedTrialExpiry);
-                            startTrialCountdown();
+                        const hasAccess = await checkUserAccess();
+                        if (hasAccess) {
+                            showPage('menu');
                         } else {
-                            startTrialPeriod();
+                            showPage('waiting');
                         }
-                        
-                        showPage('menu');
-                        updateUIForLoggedInUser();
                         return;
                     }
+                    
+                    showPage('login');
                 } catch (error) {
                     console.error('Error checking auth status:', error);
+                    showPage('login');
                 }
+            }
+
+            // إعداد مستمعي الأحداث
+            function setupEventListeners() {
+                // تسجيل الدخول والتسجيل
+                loginButton.addEventListener('click', handleLogin);
+                signupButton.addEventListener('click', () => {
+                    loginForm.style.display = 'none';
+                    signupForm.classList.add('active');
+                    signupButton.style.display = 'none';
+                });
+                confirmSignupButton.addEventListener('click', handleSignUp);
+                guestButton.addEventListener('click', handleGuestLogin);
+                
+                // التنقل بين الصفحات
+                backToLogin.addEventListener('click', handleSignOut);
+                signOutWaiting.addEventListener('click', handleSignOut);
+
+                // التنقل في القوائم
+                document.getElementById('kursCard').addEventListener('click', () => showPage('kurs'));
+                document.getElementById('examsCard').addEventListener('click', () => showPage('exams'));
+                document.getElementById('backFromKurs').addEventListener('click', () => showPage('menu'));
+
+                // KURS submenu
+                document.getElementById('lesenCard').addEventListener('click', () => showPage('lesen'));
+                document.getElementById('hoerenCard').addEventListener('click', () => showPage('hoeren'));
+                document.getElementById('schreibenCard').addEventListener('click', () => showPage('schreiben'));
+                document.getElementById('pdfsCard').addEventListener('click', () => showPage('pdfs'));
+
+                // Back buttons from submenus
+                document.getElementById('backFromLesen').addEventListener('click', () => showPage('kurs'));
+                document.getElementById('backFromHoeren').addEventListener('click', () => showPage('kurs'));
+                document.getElementById('backFromSchreiben').addEventListener('click', () => showPage('kurs'));
+                document.getElementById('backFromPdfs').addEventListener('click', () => showPage('kurs'));
+
+                // إدخال بالإنتر
+                passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleLogin();
+                    }
+                });
+
+                signupPasswordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleSignUp();
+                    }
+                });
             }
 
             // بدء التطبيق
             async function init() {
-                // تحميل الإعدادات المحفوظة
-                const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-                if (savedDarkMode) {
-                    document.body.classList.add('dark-mode');
-                    themeToggle.textContent = '☀️';
-                }
-                
-                const savedLanguage = localStorage.getItem('language') || 'ar';
-                changeLanguage(savedLanguage);
-                
-                // تحميل الصورة المحفوظة
-                loadSavedAvatar();
-                
-                // التحقق من حالة تسجيل الدخول
                 await checkLoginStatus();
-                
                 setupEventListeners();
             }
 
